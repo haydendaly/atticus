@@ -5,12 +5,38 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 
 let modelDict = require('../models/schema').modelDict;
 
+var updateClub = async function (userID, clubID, callback) {
+  modelDict.user.findOne({
+    'userID' : userID
+  }).then( result => {
+    clubs = result.clubs;
+    clubs.push(clubID);
+    modelDict.user.updateOne({
+      'userID' : userID
+    }, {
+      'clubs' : clubs
+    }, {
+      _id : 0
+    }).then(result => {
+      if (result.n == 1) {
+        callback(true);
+      } else {
+        callback(false);
+      };
+    }).catch(err => {
+      callback(false);
+    });
+  }).catch(err => {
+    callback(false);
+  });
+};
+
 module.exports = async function (req, res) {
   if(!req.params.clubID) {
-    return res.status(400).send('Missing clubID');
+    return res.status(400).json('Missing clubID');
   };
   if(!req.params.userID) {
-    return res.status(400).send('Missing userID');
+    return res.status(400).json('Missing userID');
   };
   modelDict.club.findOne({
     'clubID' : req.params.clubID
@@ -29,7 +55,9 @@ module.exports = async function (req, res) {
         _id : 0
       }).then(result => {
         if (result.n == 1) {
-          res.json(true);
+          updateClub(req.params.userID, req.params.clubID, function(data) {
+            res.json(data);
+          });
         } else {
           res.json(false);
         }

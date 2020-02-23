@@ -1,5 +1,3 @@
-// NEEDS FIXING FOR POPULATION OF BOOK
-
 /*#################################################
 For: SSW 322
 By: Bruno, Hayden, Madeline, Miriam, and Scott
@@ -47,10 +45,15 @@ module.exports = async function (req, res) {
         getUsers(result.users, function(users) {
           result.users = users;
           getBook(result.bookID, function(book) {
-            result.book = book;
-            // NEEDS FIXING
-            // Make copy of object and then just add new field
-            res.json(result);
+            var response = {
+              "clubID" : result.clubID,
+              "bookID" : result.bookID,
+              "users" : result.users,
+              "start" : result.start,
+              "end" : result.end,
+              "book" : book
+            }
+            res.json(response);
           });
         });
       }

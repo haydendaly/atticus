@@ -20,8 +20,8 @@ module.exports = async function (req, res) {
       res.json(true);
     } else {
       res.json(false);
-    }
+    };
   }).catch(err => {
     res.status(500).json(err);
   });
-}
+};

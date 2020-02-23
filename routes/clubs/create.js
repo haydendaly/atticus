@@ -14,12 +14,12 @@ var generateID = async function (callback) {
     if (result !== null) {
       generateID(function(result) {
         callback(result);
-      })
+      });
     } else {
       callback(clubID);
-    }
-  })
-}
+    };
+  });
+};
 
 var checkBook = async function(bookID, callback) {
   modelDict.book.findOne({
@@ -35,36 +35,68 @@ var checkBook = async function(bookID, callback) {
         model.save(bookData)
         .then(result => {
           if(result != null) {
+            updateClub()
             callback(result.title);
           } else {
             callback(false);
           }
         });
       });
-    }
+    };
   }).catch(err => {
     res.status(500).json(err);
   });
-}
+};
 
-// NEED TO UPDATE USER CLUBS FIELD
+var updateClub = async function (userID, clubID, callback) {
+  modelDict.user.findOne({
+    'userID' : userID
+  }).then( result => {
+    clubs = result.clubs;
+    clubs.push(clubID);
+    modelDict.user.updateOne({
+      'userID' : userID
+    }, {
+      'clubs' : clubs
+    }, {
+      _id : 0
+    }).then(result => {
+      if (result.n == 1) {
+        callback(true);
+      } else {
+        callback(false);
+      };
+    }).catch(err => {
+      callback(false);
+    });
+  }).catch(err => {
+    callback(false);
+  });
+};
 
 module.exports = async function (req, res) {
   generateID(function(clubID) {
     req.body.clubID = clubID;
     checkBook(req.body.bookID, function(title) {
       req.body.title = title;
+      req.body.users = [req.body.userID];
       var model = new modelDict.club(req.body);
       model.save(req.body)
       .then(result => {
         if(result != null) {
-          res.json({
-            'clubID' : req.body.clubID
+          updateClub(req.body.userID, clubID, function(data) {
+            if (data) {
+              res.json({
+                "clubID" : clubID
+              });
+            } else {
+              res.json(false);
+            };
           });
         } else {
           res.json(false);
-        }
+        };
       });
     });
   });
-}
+};

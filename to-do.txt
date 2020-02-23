@@ -1,4 +1,3 @@
-Need to update User.clubs array in /clubs/create, /clubs/join/:clubID/:userID, /clubs/leave/:clubID/:userID
 Need to fix populate for book data on /clubs/get/:clubID/?populate=true
 Make searchBooks wrapped in /routes/books/
 Populate homescreen maybe have a request run on a daily schedule that looks at top lists and chooses random ids from them then stores list of those ids under some data for the "daily picks" on the homescreen which would then would iterate through create and populate all for homescreen
