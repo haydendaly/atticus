@@ -11,5 +11,6 @@ let books = require('./books/main');
 router.get('/get/:bookID', books.get);
 router.get('/doesExist/:bookID', books.doesExist);
 router.get('/create/:bookID', books.create);
+router.get('/search/:search', books.search);
 
 module.exports = router;

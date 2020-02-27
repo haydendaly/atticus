@@ -4,6 +4,7 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 #################################################*/
 
 let modelDict = require('../models/schema').modelDict;
+let getBook = require('../external/main').getBook;
 
 module.exports = async function (req, res) {
   if(!req.params.bookID) {
@@ -17,7 +18,19 @@ module.exports = async function (req, res) {
     if (result != null) {
       res.json(result);
     } else {
-      res.json(false);
+      getBook(req.params.bookID, function(data) {
+        var model = new modelDict.book(data);
+        model.save(data)
+        .then(result => {
+          if (result != null) {
+            res.json(result)
+          } else {
+            res.json(false);
+          }
+        }).catch(err => {
+          res.status(500).json(err);
+        });
+      });
     };
   }).catch(err => {
     res.status(500).json(err);

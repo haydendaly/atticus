@@ -5,4 +5,4 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 
 module.exports.getBook = require('./getBook');
 // module.exports.getHomeScreen = require('./getHomeScreen');
-// module.exports.searchBooks = require('./searchBooks');
+module.exports.searchBooks = require('./searchBooks');
