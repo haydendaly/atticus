@@ -1,10 +1,11 @@
 module.exports = (bookID) => {
-    url = 'https://bookclub-hd.herokuapp.com/books/get/' + bookID
+    url = 'https://bookclub-hd.herokuapp.com/books/get/' + bookID;
     fetch(url, {
         method: 'GET'
     })
     .then((response) => response.json())
     .then((responseJson) => {
+        console.log(responseJson)
         return(responseJson);
     })
     .catch((error) => {
