@@ -1,2 +1,4 @@
 Populate homescreen maybe have a request run on a daily schedule that looks at top lists and chooses random ids from them then stores list of those ids under some data for the "daily picks" on the homescreen which would then would iterate through create and populate all for homescreen
 Add TravisCI testing for pipeline to ensure working before deployment
+Change user data in clubs to objects with userID field and progress field, add updateProgress request to updateProgress
+Finish all requests on frontend functions

@@ -10,3 +10,4 @@ module.exports.update = require('./update');
 
 module.exports.join = require('./join');
 module.exports.leave = require('./leave');
+module.exports.updateProgress = require('./updateProgress');

@@ -17,5 +17,6 @@ router.post('/update/:clubID', clubs.update);
 // User interactions
 router.get('/join/:clubID/:userID', clubs.join);
 router.get('/leave/:clubID/:userID', clubs.leave);
+router.get('/updateProgress/:clubID/:userID/:progress', clubs.updateProgress);
 
 module.exports = router;

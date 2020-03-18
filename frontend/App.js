@@ -1,32 +1,35 @@
-import React from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
+/*#################################################
+For: SSW 322
+By: Bruno, Hayden, Madeline, Miriam, and Scott
+#################################################*/
 
-import { get } from './functions/books';
-
-import Login from "./Views/Login"
-import Home from "./Views/Home"
-
-var infiniteJest = get('20509947')
-console.log(infiniteJest)
+import React, { useState } from "react";
+import { StyleSheet, Text, View, FlatList, Alert } from "react-native";
+import books from "./functions/books";
+import SignInStack from "./routes/signInStack";
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <Text>hi</Text>
-        <Login />
-        <Home />
-      </View>
-    </NavigationContainer>
-  )
+  // books.get('bookid', function(data) {
+  //   console.log(data)
+  // })
+  return <SignInStack />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    paddingTop: 40,
+    paddingHorizontal: 20
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "pink",
+    fontSize: 24,
+    marginHorizontal: 10,
+    marginTop: 24
   }
-})
+});

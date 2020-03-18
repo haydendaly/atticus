@@ -3,8 +3,61 @@ For: SSW 322
 By: Bruno, Hayden, Madeline, Miriam, and Scott
 #################################################*/
 
-import { get } from './books/main';
-
 module.exports = {
-    get: get
+    get: function(bookID, callback) {
+        url = 'https://bookclub-hd.herokuapp.com/books/get/' + bookID;
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
+    },
+    doesExist: function(bookID, callback) {
+        url = 'https://bookclub-hd.herokuapp.com/books/doesExist' + bookID;
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
+    },
+    create: function(bookID, callback) {
+        url = 'https://bookclub-hd.herokuapp.com/books/create/' + bookID;
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
+    },
+    search: function(search, callback) {
+        url = 'https://bookclub-hd.herokuapp.com/books/search/' + search;
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
+    }
 }
