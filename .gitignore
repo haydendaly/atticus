@@ -1,4 +1,3 @@
-backend/node_modules/
 backend/private.js
 backend/.git
 backend/.gitignore
