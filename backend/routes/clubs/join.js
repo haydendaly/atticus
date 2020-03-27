@@ -44,8 +44,17 @@ module.exports = async function (req, res) {
     _id : 0
   }).then(result => {
     if (result != null) {
-      if (!result.users.includes(req.params.userID)) {
-        result.users.push(req.params.userID);
+      var bool = true;
+      for (elem in result.users) {
+        if (req.params.userID == result.users[elem].userID) {
+          bool = false
+        }
+      }
+      if (bool) {
+        result.users.push({
+          userID: req.params.userID,
+          progress: 0
+        })
       }
       modelDict.club.updateOne({
         'clubID' : req.params.clubID

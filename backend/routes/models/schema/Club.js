@@ -8,7 +8,7 @@ let mongoose = require('mongoose');
 const ClubSchema = new mongoose.Schema({
 	'clubID' : { type: String, default: '' },
 	'bookID' : { type: String, default: '' },
-	'users' : { type: Array, default: '' },
+	'users' : { type: Array, default: [] },
 	'start' : {type: Number, default: Math.floor(new Date() / 1000)},
 	'end' : {type: Number, default: Math.floor(new Date() / 1000) + 2592000 }
 });

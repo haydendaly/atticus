@@ -20,4 +20,7 @@ router.get('/getClubs/:userID', users.getClubs);
 // User token (for notifications)
 router.get('/updateToken/:userID/:newToken', users.updateToken);
 
+// Get Homescreen
+router.get('/getHomescreen/:userID', users.getHomescreen);
+
 module.exports = router;
