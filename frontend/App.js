@@ -9,9 +9,9 @@ import books from "./functions/books";
 import SignInStack from "./routes/signInStack";
 
 export default function App() {
-  // books.get('bookid', function(data) {
-  //   console.log(data)
-  // })
+  books.getHomescreen(function(data) {
+    console.log(data)
+  })
   return <SignInStack />;
 }
 

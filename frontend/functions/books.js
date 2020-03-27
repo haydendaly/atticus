@@ -59,5 +59,20 @@ module.exports = {
             console.log(JSON.stringify(error));
             callback([]);
         })
+    },
+    getHomescreen: function(callback) {
+        url = 'https://bookclub-hd.herokuapp.com/books/getHomescreen';
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson)
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
     }
 }

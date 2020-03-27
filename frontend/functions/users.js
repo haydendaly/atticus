@@ -115,19 +115,5 @@ module.exports = {
             console.log(JSON.stringify(error));
             callback([]);
         })
-    },  
-    getHomescreen: function(userID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/users/getHomescreen/' + userID;
-        fetch(url, {
-            method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
     }
 }
