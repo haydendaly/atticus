@@ -12,19 +12,18 @@ import {
   TextInput
 } from "react-native";
 
-export default function TextVerification({ navigation }) {
-  const pressHandler = () => {
-    navigation.navigate("CategoryPreference");
-  };
-
+export default function PhoneInput({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Enter the verification code</Text>
-      <TextInput style={styles.input} keyboardType={"phone-pad"} />
+      <View style={styles.textContainer}>
+        <Text style={styles.header}>What's your code?</Text>
+        <Text style={styles.subHeader}>You should shortly receive an SMS verification code.</Text>
+      </View>
+      <TextInput placeholder='Verification Code' textAlign={'center'} autoFocus={true} style={styles.input} keyboardType={"phone-pad"} />
       <TouchableOpacity
-        style={styles.getStartedButton}
+        style={styles.doneButton}
         activeOpacity={0.75}
-        onPress={pressHandler}
+        onPress={() => navigation.navigate("HomeStack")}
       >
         <View>
           <Text style={styles.buttonText}>Done</Text>
@@ -35,32 +34,46 @@ export default function TextVerification({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#eee",
+  header: {
+    fontSize: 40,
+    color: "#20639B",
+    fontWeight: "600"
+  },
+  subHeader: {
+    fontSize: 20,
+    color: "#20639B",
+    padding: "5%",
+    fontWeight: "400"
+  },
+  textContainer: {
+    flex: .5,
     alignItems: "center",
     justifyContent: "center"
   },
-  getStartedButton: {
-    backgroundColor: "#007aff",
-    height: 50,
-    width: "85%",
+  container: {
+    flex: 1,
+    alignItems: "center",
+  },
+  doneButton: {
+    backgroundColor: "#20639B",
+    width: '85%',
+    padding: 18,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8
   },
   buttonText: {
     color: "white",
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: "500"
   },
   input: {
     width: "60%",
-    height: 60,
-    borderWidth: 1,
-    borderColor: "#444",
+    borderWidth: 2,
+    borderColor: "#20639B",
     margin: 8,
-    paddingLeft: 10,
-    paddingRight: 10
+    padding: 18,
+    borderRadius: 8,
+    fontSize: 24
   }
 });
