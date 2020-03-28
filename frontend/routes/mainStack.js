@@ -1,8 +1,8 @@
-import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
-import React from "react";
-import SignInStack from "./signInStack";
-import HomeStack from "./homeStack";
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import React from 'react';
+import SignInStack from './signInStack';
+import HomeStack from './homeStack';
 
 
 const screens = {
