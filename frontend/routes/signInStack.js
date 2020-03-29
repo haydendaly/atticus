@@ -22,7 +22,7 @@ const screens = {
       return {
         headerShown: true,
         title: 'Phone Number',
-        headerStyle: { backgroundColor: '#20639B' },
+        headerStyle: { backgroundColor: '#2d95d1' },
         headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('GetStarted')} style={{paddingLeft: 8}}>
@@ -42,7 +42,7 @@ const screens = {
       return {
         headerShown: true,
         title: 'Verification',
-        headerStyle: { backgroundColor: '#20639B' },
+        headerStyle: { backgroundColor: '#2d95d1' },
         headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('PhoneInput')} style={{paddingLeft: 8}}>

@@ -88,12 +88,6 @@ module.exports = async function (callback) {
           "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1446876799l/6759._SX98_.jpg"
         },
         {
-          "bookID": "478",
-          "title": "Bowling Alone: The Collapse and Revival of American Community",
-          "author": "Robert D. Putnam",
-          "imgURL": "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
-        },
-        {
           "bookID": "3805",
           "title": "The Corrections",
           "author": "Jonathan Franzen",
@@ -141,11 +135,75 @@ module.exports = async function (callback) {
           "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1547125681l/24113._SX98_.jpg"
         },
         {
-          "bookID": "70535",
-          "title": "2001: A Space Odyssey (Space Odyssey, #1)",
-          "author": "Arthur C. Clarke",
+          "bookID": "36696533",
+          "title": "New Dark Age: Technology and the End of the Future",
+          "author": "James Bridle",
           "imgURL": "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+        },
+      ]
+    },
+    {
+      "title" : "Tearjerkers",
+      "data" : [
+        {
+          "bookID": "22822858",
+          "title": "A Little Life",
+          "author": "Hanya Yanagihara",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1446469353l/22822858._SX98_.jpg"
+        },
+        {
+          "bookID": "38447",
+          "title": "The Handmaid's Tale (The Handmaid's Tale, #1)",
+          "author": "Margaret Atwood",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1578028274l/38447._SX98_.jpg"
+        },
+        {
+          "bookID": "166997",
+          "title": "Stoner",
+          "author": "John  Williams",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320600716l/166997._SX98_.jpg"
+        },
+        {
+          "bookID": "6288",
+          "title": "The Road",
+          "author": "Cormac McCarthy",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1439197219l/6288._SY160_.jpg"
+        },
+        {
+          "bookID": "4981",
+          "title": "Slaughterhouse-Five",
+          "author": "Kurt Vonnegut Jr.",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440319389l/4981._SY160_.jpg"
         }
+      ]
+    },
+    {
+      "title" : "Urban Studies",
+      "data" : [
+        {
+          "bookID": "25542140",
+          "title": "Imaginary Cities",
+          "author": "Darran Anderson",
+          "imgURL": "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+        },
+        {
+          "bookID": "17375",
+          "title": "The Meaning of It All: Thoughts of a Citizen-Scientist",
+          "author": "Richard P. Feynman",
+          "imgURL": "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+        },
+        {
+          "bookID": "931984",
+          "title": "The Presentation of Self in Everyday Life",
+          "author": "Erving Goffman",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1400075101l/931984._SX98_.jpg"
+        },
+        {
+          "bookID": "17945689",
+          "title": "Why Place Matters: Geography, Identity, and Civic Life in Modern America",
+          "author": "Wilfred M. McClay",
+          "imgURL": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1391615167l/17945689._SX98_.jpg"
+        },
       ]
     }
   ])

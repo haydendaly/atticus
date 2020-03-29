@@ -37,14 +37,15 @@ export default function PhoneInput({ navigation }) {
 const styles = StyleSheet.create({
   header: {
     fontSize: 40,
-    color: '#20639B',
+    color: '#143e60',
     fontWeight: '600'
   },
   subHeader: {
     fontSize: 20,
-    color: '#20639B',
+    color: '#143e60',
     padding: '5%',
-    fontWeight: '400'
+    fontWeight: '400',
+    textAlign: 'center'
   },
   textContainer: {
     flex: .5,
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   input: {
     width: '60%',
     borderWidth: 2,
-    borderColor: '#20639B',
+    borderColor: '#143e60',
     margin: 8,
     padding: 18,
     borderRadius: 8,

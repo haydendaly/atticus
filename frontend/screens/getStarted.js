@@ -22,7 +22,7 @@ export default function GetStarted({ navigation }) {
   return (
     <ImageBackground source={imageHolder[currentImageIndex]} style={{width: '100%', height: '100%'}}>
       <View style={styles.container}>
-        <Text style={styles.text}>Book Club</Text>
+        <Text style={styles.text}>Atticus</Text>
         <Text style={styles.subText}>Group reading made easy</Text>
         <View style={styles.bottom}>
           <TouchableOpacity

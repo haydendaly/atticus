@@ -1,4 +1,28 @@
-Populate homescreen maybe have a request run on a daily schedule that looks at top lists and chooses random ids from them then stores list of those ids under some data for the "daily picks" on the homescreen which would then would iterate through create and populate all for homescreen
-Add TravisCI testing for pipeline to ensure working before deployment
-Change user data in clubs to objects with userID field and progress field, add updateProgress request to updateProgress
-Finish all requests on frontend functions
+Implement Club Join / Creation Screen:
+  - Create navigator
+  - Implement Club Creation Screen
+    - Create navigator
+    - Build UI
+    - Connect functions from './functions/clubs'
+    - Invite code
+  - Join by invite code -> redirect to Club Screen
+  - Build UI
+  - Connect functions from './functions/clubs'
+
+Implement Search
+  - Create navigator
+  - Build UI
+  - Connect to Book Screen
+  - Connect function from './functions/books'
+
+Implement Club Screen
+  - Create navigator
+  - Display club Info
+  - Display user progress
+  - Implement Club Info Screen
+    - Leave Club, Invite Code, etc
+
+Implement Book Screen
+  - Create navigator
+  - Display book info
+  - Create club --> Redirect to club screen

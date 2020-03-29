@@ -5,8 +5,7 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 
 module.exports = {
     get: function(bookID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/books/get/' + bookID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/books/get/' + bookID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -19,8 +18,7 @@ module.exports = {
         })
     },
     doesExist: function(bookID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/books/doesExist' + bookID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/books/doesExist' + bookID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -33,8 +31,7 @@ module.exports = {
         })
     },
     create: function(bookID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/books/create/' + bookID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/books/create/' + bookID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -47,8 +44,7 @@ module.exports = {
         })
     },
     search: function(search, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/books/search/' + search;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/books/search/' + search, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -61,13 +57,11 @@ module.exports = {
         })
     },
     getHomescreen: function(callback) {
-        url = 'https://bookclub-hd.herokuapp.com/books/getHomescreen';
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/books/getHomescreen', {
             method: 'GET'
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson)
             callback(responseJson);
         })
         .catch((error) => {

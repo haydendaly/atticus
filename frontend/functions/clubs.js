@@ -5,8 +5,7 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 
 module.exports = {
     create: function(bookID, userID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/create';
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/create', {
             method: 'POST',
             headers: {
             Accept: 'application/json',
@@ -14,10 +13,7 @@ module.exports = {
             },
             body: JSON.stringify({
                 bookID: bookID,
-                users: [{
-                    userID: userID,
-                    progress: 0
-                }]
+                userID: userID
             })
         })
         .then((response) => response.json())
@@ -30,8 +26,7 @@ module.exports = {
         })
     },
     get: function(clubID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/get/' + clubID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/get/' + clubID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -44,8 +39,7 @@ module.exports = {
         })
     },
     delete: function(clubID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/delete/' + clubID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/delete/' + clubID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -58,8 +52,7 @@ module.exports = {
         })
     },
     update: function(clubID, body, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/update/' + clubID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/update/' + clubID, {
             method: 'POST',
             headers: {
             Accept: 'application/json',
@@ -77,8 +70,7 @@ module.exports = {
         })
     },
     join: function(clubID, userID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/join/' + clubID + "/" + userID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/join/' + clubID + "/" + userID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -91,8 +83,7 @@ module.exports = {
         })
     },
     leave: function(clubID, userID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/leave/' + clubID + "/" + userID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/leave/' + clubID + "/" + userID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -105,8 +96,7 @@ module.exports = {
         })
     },
     updateProgress: function(userID, callback) {
-        url = 'https://bookclub-hd.herokuapp.com/clubs/updateProgress/' + clubID + "/" + userID;
-        fetch(url, {
+        fetch('https://bookclub-hd.herokuapp.com/clubs/updateProgress/' + clubID + "/" + userID, {
             method: 'GET'
         })
         .then((response) => response.json())
