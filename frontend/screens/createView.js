@@ -13,9 +13,7 @@ export default function ClubView({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.text}>Book Club</Text>
       <Text>This is createview</Text>
-
     </View>
-
   );
 }
 
