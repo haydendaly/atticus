@@ -40,7 +40,11 @@ export default class GetStarted extends React.Component {
                 (
                   <View style={styles.clubHolder1}>
                     <View style={styles.clubHolder}>
-                      <TouchableOpacity style={styles.clubImage}>
+                      <TouchableOpacity style={styles.clubImage} onPress={() => {
+                        // clubs.getClub(item.clubID, () => {
+                        this.props.navigation.navigate('ClubView')
+                      // })
+                      }}>
                         <Image source={{ uri: item.imgURL}} style={{width: '100%', height: '100%', borderRadius: 8}}>
                         </Image>
                       </TouchableOpacity>
@@ -67,7 +71,11 @@ export default class GetStarted extends React.Component {
                   renderItem={({ item }) =>
                     (
                       <View style={{paddingLeft: 10}}>
-                        <TouchableOpacity style={styles.book}>
+                        <TouchableOpacity style={styles.book} onPress={() => {
+                          // books.getBook(item.bookID, () => {
+                            this.props.navigation.navigate('BookView')
+                          // })
+                        }}>
                           <Image source={{ uri: item.imgURL}} style={{width: '100%', height: '100%', borderRadius: 8}}>
                           </Image>
                         </TouchableOpacity>

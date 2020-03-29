@@ -4,18 +4,22 @@ import React from 'react';
 import { Button, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../screens/homeScreen';
+import ClubView from '../screens/clubView';
+import BookView from '../screens/bookView'
+import SearchView from '../screens/searchView';
+import CreateView from '../screens/createView';
 
 const screens = {
   HomeScreen: {
     screen: HomeScreen,
-    navigationOptions: () => {
+    navigationOptions: ({navigation}) => {
       return {
         headerShown: true,
         title: 'Atticus',
         headerStyle: { backgroundColor: '#2d95d1' },
         headerTitleStyle: { color: '#FFF', fontSize: 28, fontWeight: '500'},
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('GetStarted')} style={{paddingLeft: 16, paddingBottom: 4}}>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchView')} style={{paddingLeft: 16, paddingBottom: 4}}>
             <Icon
               name='search'
               color='#FFF'
@@ -24,7 +28,7 @@ const screens = {
           </TouchableOpacity>
         ),
         headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('GetStarted')} style={{paddingRight: 16, paddingBottom: 4}}>
+          <TouchableOpacity onPress={() => navigation.navigate('CreateView')} style={{paddingRight: 16, paddingBottom: 4}}>
             <Icon
               name='plus'
               color='#FFF'
@@ -33,6 +37,86 @@ const screens = {
           </TouchableOpacity>
         ),
       };
+    }
+  },
+  ClubView: {
+    screen: ClubView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Club View',
+        headerStyle: { backgroundColor: '#20639B' },
+        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
+    }
+  },
+  BookView: {
+    screen: BookView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Book View',
+        headerStyle: { backgroundColor: '#20639B' },
+        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
+    }
+  },
+  SearchView: {
+    screen: SearchView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Search View',
+        headerStyle: { backgroundColor: '#20639B' },
+        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
+    }
+  },
+  CreateView: {
+    screen: CreateView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Create View',
+        headerStyle: { backgroundColor: '#20639B' },
+        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
     }
   }
 };
