@@ -5,16 +5,59 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity,
-    TextInput, Button } from "react-native";
+    TextInput, Button, ScrollView, FlatList, Image, Dimensions } from "react-native";
+import books from '../functions/books';
 
 export default function ClubView({ navigation }) {
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Book Club</Text>
-      <Text>This is searchview</Text>
+  const [value, changeText] = React.useState('');
+  const [results, updateResults] = React.useState([]);
+  function onChangeText(text) {
+	let result = changeText(text);
+    books.search(text, (books) => {
+	  if (books[0] == null) {
+		updateResults([]);
+	  }
+      else {
+		updateResults(books);
+	  }
+	});
+	return result;
+  }
 
-    </View>
+  return (
+    
+	<View style={styles.container}>
+      <Text style={styles.text}>Search</Text>
+      <Text>Enter a search term</Text>
+	  <TextInput placeholder='Title, Author, ISBN, etc...' textAlign={'center'} 
+	     autoFocus={true} style={styles.input} keyboardType={'default'} 
+		 onChangeText={text => onChangeText(text)} value={value}/>
+	  <FlatList
+	    showsVerticalScrollIndicator={false}
+		data={results}
+		renderItem={({ item }) =>
+		  (
+			<View>
+			  <TouchableOpacity style={styles.bookHolder} onPress={() => {
+		        // books.getBook(item.bookID, () => {
+				  navigation.navigate('BookView')
+				// })
+			  }}>
+			    <Image source={{ uri: item.imgURL}} style={styles.bookImage}>
+				</Image>
+				<View style={styles.bookInfo}>
+			      <Text style={styles.bookTitle}>{item.title}</Text>
+				  <Text style={styles.clubAuthor}>By {item.author}</Text>
+			    </View>
+			  </TouchableOpacity>
+			</View>
+		  )
+		}
+		keyExtractor={item => item.title}
+	  />
+	</View>
+    
 
   );
 }
@@ -28,5 +71,40 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 50,
     fontSize: 32
-  }
+  },
+  input: {
+    width: '80%',
+    borderWidth: 2,
+    borderColor: '#143e60',
+    margin: 8,
+    padding: 18,
+    borderRadius: 8,
+    fontSize: 23
+  },
+  bookHolder: {
+	width: Dimensions.get('screen').width * .9,
+	height: 185,
+	flexDirection: 'row',
+	justifyContent: 'space-between'
+  },
+  bookImage: {
+    width: 113.33,
+    height: 165,
+    borderRadius: 8,
+    paddingLeft: 10,
+    marginTop: 10
+  },
+  bookInfo: {
+    width: Dimensions.get('screen').width*.9 - 120,
+  },
+  bookTitle: {
+    fontSize: 24,
+    color: "#000",
+    marginTop: 10
+  },
+  bookAuthor: {
+    justifyContent: 'space-between',
+    marginTop: 5,
+    color: "#bbb"
+  },
 });
