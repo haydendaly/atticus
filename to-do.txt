@@ -1,28 +1,32 @@
+Implement User:
+  - OAuth with Firebase
+  - Set global variable of user ID
+  - Only does login sequence if no global variable of user ID
+
 Implement Club Join / Creation Screen:
-  - Create navigator
-  - Implement Club Creation Screen
-    - Create navigator
-    - Build UI
-    - Connect functions from './functions/clubs'
-    - Invite code
+  - Connect to search screen
   - Join by invite code -> redirect to Club Screen
   - Build UI
   - Connect functions from './functions/clubs'
 
 Implement Search
-  - Create navigator
   - Build UI
   - Connect to Book Screen
   - Connect function from './functions/books'
 
 Implement Club Screen
-  - Create navigator
+  - Pass info through navigator
   - Display club Info
   - Display user progress
   - Implement Club Info Screen
     - Leave Club, Invite Code, etc
 
 Implement Book Screen
-  - Create navigator
+  - Pass info through navigator
   - Display book info
-  - Create club --> Redirect to club screen
+    - Open window to Amazon affiliate link
+  - Implement Club Creation Screen
+    - Build UI
+    - Connect functions from './functions/clubs'
+    - Invite code
+    - Create club --> Redirect to club screen
