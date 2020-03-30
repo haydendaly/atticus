@@ -105,7 +105,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerShown: true,
-        title: 'Create View',
+        title: 'Join a Club',
         headerStyle: { backgroundColor: '#20639B' },
         headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
         headerLeft: () => (
