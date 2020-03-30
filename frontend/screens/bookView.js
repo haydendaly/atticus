@@ -5,14 +5,41 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 
 import React, { useState } from 'react';
 import {
-  Text, View, StyleSheet, TouchableOpacity, TextInput, Button
+  Text, View, StyleSheet, TouchableOpacity, TextInput, Button, Image
 } from 'react-native';
 
 
 export default function BookView({ navigation }) {
   return (
     <View style={styles.container}>
-        <Text>This is book view</Text>
+        <View style={styles.imageContainer}>
+          <Image source={require('../assets/infinite_jest.jpg')} />
+        </View>
+
+          <Text style={styles.bookTitle}>Infinite Jest</Text>
+          <Text style={styles.subHeader}>David Foster Wallace</Text>
+
+          <View style={styles.container}>
+
+            <Text>Set in an addicts' halfway house and a tennis academy, 
+            and featuring the most endearingly screwed-up family to come 
+            along in recent fiction, Infinite Jest explores essential questions 
+            about what entertainment is and why it has come to so dominate our 
+            lives; about how our desire for entertainment affects our need to 
+            connect with other people; and about what the pleasures we choose 
+            say about who we are. Equal parts philosophical quest and screwball 
+            comedy, Infinite Jest bends every rule of fiction without sacrificing 
+            for a moment its own entertainment value. It is an exuberant, uniquely 
+            American exploration of the passions that make us human—and one of 
+            those rare books that renew the idea of what a novel can do.</Text>
+
+          </View>
+
+          <Button
+          style={styles.buttoon}
+          title="Create A Club" 
+          />
+
     </View>
   );
 }
@@ -23,20 +50,35 @@ const styles = StyleSheet.create({
     color: '#20639B',
     fontWeight: '600'
   },
+  imageContainer: {
+    width:'100%',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttoon: {
+    borderRadius:20,
+    color: '#20639B'
+  },
+  bookTitle: {
+    fontSize:24,
+    color:'black',
+    paddingTop:10
+  },
   subHeader: {
     fontSize: 20,
     color: '#20639B',
-    padding: '5%',
+    padding: '2%',
     fontWeight: '400'
   },
   textContainer: {
     flex: .5,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: '5%'
   },
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   doneButton: {
     backgroundColor: '#20639B',

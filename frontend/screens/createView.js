@@ -10,6 +10,7 @@ import { Text, View, StyleSheet, TouchableOpacity,
 export default function ClubView({ navigation }) {
   return (
     <View style={styles.container}>
+      
       <TouchableOpacity
         style={styles.inviteCodeButton}
         activeOpacity={0.75}
@@ -37,7 +38,6 @@ export default function ClubView({ navigation }) {
       </TouchableOpacity>
 
     </View>
-
   );
 }
 

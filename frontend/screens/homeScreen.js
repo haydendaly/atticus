@@ -1,6 +1,6 @@
 /*#################################################
 For: SSW 322
-By: Bruno, Hayden, Madeline, Miriam, and Scott
+By: Bruno, Hayden, Madeleine, Miriam, and Scott
 #################################################*/
 
 import React, { useState, useEffect } from "react";
