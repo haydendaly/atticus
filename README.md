@@ -19,7 +19,7 @@ To run the frontend, ensure that you have Expo, npm, and yarn installed, To star
 
 ```
 npm install
-yarm install
+yarn install
 expo install react-navigation-stack react-native-safe-area-context react-native-gesture-handler react-native-screens @react-native-community/masked-view
 expo start
 ```

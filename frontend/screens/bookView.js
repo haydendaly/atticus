@@ -7,9 +7,9 @@ import React, { useState } from 'react';
 import {
   Text, View, StyleSheet, TouchableOpacity, TextInput, Button
 } from 'react-native';
-// import TextVerification from './textVerification';
 
-export default function GetStarted({ navigation }) {
+
+export default function BookView({ navigation }) {
   return (
     <View style={styles.container}>
         <Text>This is book view</Text>
