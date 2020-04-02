@@ -11,90 +11,94 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  Image
+  Image,
+  FlatList
 } from "react-native"
 
-export default function ClubView({ navigation }) {
-  const placeholderPageCountProgress = 462
-  const placeholderPageCountTotal = 782
-  const friends = [
-    {
-      name: "Scott",
-      progress: 309
-    },
-    {
-      name: "Madeleine",
-      progress: 111
-    },
-    {
-      name: "Miriam",
-      progress: 634
+export default class ClubView extends React.Component {
+  constructor(props) {
+    super(props)
+    var club = this.props.navigation.state.params[0]
+    this.state = {
+      currentUserProgress: this.props.navigation.state.params[4],
+      pageTotal: 69,
+      friends: this.props.navigation.state.params[2],
+      book: this.props.navigation.state.params[1],
+      userID: this.props.navigation.state.params[3]
     }
-  ]
-  return (
-    <View style={styles.container}>
-      <Image
-        source={{
-          uri:
-            "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
-        }}
-        style={styles.bookCover}
-      ></Image>
-      <Text style={styles.bookTitle}>Book Title Placeholder</Text>
-      <Text style={styles.bookAuthor}>Book Author Placeholder</Text>
-      <View style={styles.progressBarContainer}>
-        <View style={{ ...styles.progressBarOutline, height: 30 }}></View>
-        <View
-          style={{
-            ...styles.progressBarProgress,
-            width: `${(placeholderPageCountProgress /
-              placeholderPageCountTotal) *
-              100}%`,
-            height: 30
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Image
+          source={{
+            uri:
+              this.state.book.imgURL
           }}
-        ></View>
-      </View>
-      <View style={styles.pageCountContainer}>
-        <TextInput
-          style={styles.pageCountInput}
-          value={placeholderPageCountProgress.toString()}
-        ></TextInput>
-        <Text style={styles.pageCountTotal}>
-          {" "}
-          / {placeholderPageCountTotal}
+          style={styles.bookCover}
+        ></Image>
+        <Text style={styles.bookTitle}>{this.state.book.title}</Text>
+        <Text style={styles.bookAuthor}>{this.state.book.author}</Text>
+        <View style={styles.progressBarContainer}>
+          <View style={{ ...styles.progressBarOutline, height: 30 }}></View>
+          <View
+            style={{
+              ...styles.progressBarProgress,
+              width: `${(this.state.currentUserProgress /
+                this.state.pageTotal) *
+                100}%`,
+              height: 30
+            }}
+          ></View>
+        </View>
+        <View style={styles.pageCountContainer}>
+          <TextInput
+            style={styles.pageCountInput}
+            value={this.state.currentUserProgress.toString()}
+          ></TextInput>
+          <Text style={styles.pageCountTotal}>
+            {" "}
+            / {this.state.pageTotal}
+          </Text>
+        </View>
+        <Text style={styles.text}>
+          {encouragements[Math.floor(Math.random() * encouragements.length)]}
         </Text>
-      </View>
-      <Text style={styles.text}>
-        {encouragements[Math.floor(Math.random() * encouragements.length)]}
-      </Text>
-      <View style={styles.connectorBall}></View>
-      <View style={styles.connectorBar}></View>
-      <View style={styles.connectorBall}></View>
-      <Text style={styles.text}>Here's how your friends are doing!</Text>
-      <View style={styles.friendContainer}>
-        {friends.map(friend => {
-          return (
-            <View style={styles.friend}>
-              <Text style={styles.friendName}>{friend.name}</Text>
-              <View style={styles.progressBarContainer}>
-                <View
-                  style={{ ...styles.progressBarOutline, height: 10 }}
-                ></View>
-                <View
-                  style={{
-                    ...styles.progressBarProgress,
-                    width: `${(friend.progress / placeholderPageCountTotal) *
-                      100}%`,
-                    height: 10
-                  }}
-                ></View>
+        <View style={styles.connectorBall}></View>
+        <View style={styles.connectorBar}></View>
+        <View style={styles.connectorBall}></View>
+        <Text style={styles.text}>Here's how your friends are doing!</Text>
+        <View style={styles.friendContainer}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{flex: 1 / this.state.friends.length}}
+            data={this.state.friends}
+            renderItem={({ item }) => (
+              <View style={styles.friend}>
+                <Text style={styles.friendName}>{item.userID}</Text>
+                <View style={styles.progressBarContainer}>
+                  <View
+                    style={{ ...styles.progressBarOutline, height: 10 }}
+                  ></View>
+                  <View
+                    style={{
+                      ...styles.progressBarProgress,
+                      width: `${(item.progress / this.state.pageCountTotal) *
+                        100}%`,
+                      height: 10
+                    }}
+                  ></View>
+                </View>
               </View>
-            </View>
-          )
-        })}
+            )}
+            keyExtractor={(item, index) => 'key' + index}
+          />
+        </View>
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 const themeColor = "indigo"
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
   },
   bookCover: {
     width: "40%",
-    height: "40%",
+    height: "30%",
     borderRadius: 8,
     marginTop: 20
   },
@@ -172,11 +176,10 @@ const styles = StyleSheet.create({
     backgroundColor: themeColor
   },
   friendContainer: {
-    flexDirection: "row",
-    width: "100%"
+    width: "100%",
   },
   friend: {
-    width: "33%",
+    width: "100%",
     alignItems: "center"
   },
   friendName: {

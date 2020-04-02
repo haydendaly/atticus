@@ -13,7 +13,9 @@ export default function ClubView({ navigation }) {
   const [value, changeText] = React.useState('');
   const [results, updateResults] = React.useState([]);
   function onChangeText(text) {
-	let result = changeText(text);
+  let result = changeText(text);
+    text = text.split(' ').join('+')
+    console.log(text)
     books.search(text, (books) => {
 	  if (books[0] == null) {
 		updateResults([]);
@@ -31,8 +33,8 @@ export default function ClubView({ navigation }) {
       <Text style={styles.text}>Search</Text>
       <Text>Enter a search term</Text>
 	  <TextInput placeholder='Title, Author, ISBN, etc...' textAlign={'center'} 
-	     autoFocus={true} style={styles.input} keyboardType={'default'} 
-		 onChangeText={text => onChangeText(text)} value={value}/>
+	    autoFocus={true} style={styles.input} keyboardType={'default'} 
+		  onChangeText={text => onChangeText(text)} value={value}/>
 	  <FlatList
 	    showsVerticalScrollIndicator={false}
 		data={results}
@@ -40,9 +42,9 @@ export default function ClubView({ navigation }) {
 		  (
 			<View>
 			  <TouchableOpacity style={styles.bookHolder} onPress={() => {
-		        // books.getBook(item.bookID, () => {
-				  navigation.navigate('BookView')
-				// })
+		      books.get(item.bookID, (data) => {
+				    navigation.navigate('BookView', data)
+          })
 			  }}>
 			    <Image source={{ uri: item.imgURL}} style={styles.bookImage}>
 				</Image>
@@ -54,7 +56,7 @@ export default function ClubView({ navigation }) {
 			</View>
 		  )
 		}
-		keyExtractor={item => item.title}
+		keyExtractor={(item, index) => item.title + index}
 	  />
 	</View>
     

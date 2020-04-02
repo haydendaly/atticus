@@ -18,7 +18,7 @@ const screens = {
         title: 'Atticus',
         headerStyle: { backgroundColor: '#2d95d1' },
         headerTitleStyle: { color: '#FFF', fontSize: 28, fontWeight: '500'},
-        gesturesEnabled: false,
+        gestureEnabled: false,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('SearchView')} style={{paddingLeft: 16, paddingBottom: 4}}>
             <Icon

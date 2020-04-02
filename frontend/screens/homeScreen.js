@@ -6,31 +6,31 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 import React, { useState, useEffect } from "react"
 import books from "../functions/books"
 import users from "../functions/users"
+import clubs from "../functions/clubs"
 import {
   Text,
   View,
   FlatList,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   ScrollView,
   Image,
-  Dimensions
+  Dimensions,
 } from "react-native"
 
 export default class GetStarted extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: "",
       books: [],
-      clubs: []
+      clubList: [],
+      userID: "temp"
     }
     books.getHomescreen(books => {
-      users.getClubs("temp", true, clubs => {
+      users.getClubs(this.state.userID, true, clubs => {
         this.setState({
           books: books,
-          clubs: clubs
+          clubList: clubs
         })
       })
     })
@@ -44,16 +44,27 @@ export default class GetStarted extends React.Component {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={this.state.clubs}
+            data={this.state.clubList}
             renderItem={({ item }) => (
               <View style={styles.clubHolder1}>
                 <View style={styles.clubHolder}>
                   <TouchableOpacity
                     style={styles.clubImage}
                     onPress={() => {
-                      // clubs.getClub(item.clubID, () => {
-                      this.props.navigation.navigate("ClubView")
-                      // })
+                      clubs.get(item.clubID, (club) => {
+                        books.get(club.bookID, (book) => {
+                          var friends = [];
+                          var currentProgress = 0;
+                          for (var i = 0; i < club.users.length; i++) {
+                            if (club.users[i].userID != this.state.userID) {
+                              friends.push(club.users[i])
+                            } else {
+                              currentProgress = club.users[i].progress
+                            }
+                          }
+                          this.props.navigation.navigate("ClubView", [club, book, friends, this.state.userID, currentProgress])
+                        })
+                      })
                     }}
                   >
                     <Image
@@ -85,9 +96,9 @@ export default class GetStarted extends React.Component {
                     <TouchableOpacity
                       style={styles.book}
                       onPress={() => {
-                        // books.getBook(item.bookID, () => {
-                        this.props.navigation.navigate("BookView")
-                        // })
+                        books.get(item.bookID, (data) => {
+                          this.props.navigation.navigate("BookView", data)
+                        })
                       }}
                     >
                       <Image
