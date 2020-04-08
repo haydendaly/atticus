@@ -23,7 +23,8 @@ export const Global = StyleSheet.create({
     },
     bottom: {
         flex: 1,
-        width: "85%",
+        width: "100%",
+        paddingLeft: '14%',
         justifyContent: "flex-end",
         marginBottom: 36
     },

@@ -22,7 +22,7 @@ export default function GetStarted({ navigation }) {
 
   return (
     <ImageBackground source={imageHolder[currentImageIndex]} style={{width: '100%', height: '100%'}}>
-      <View style={Global.container}>
+      <View style={[Global.container, {backgroundColor: "rgba(0,0,0,0)"}]}>
         <Text style={Global.text}>Atticus</Text>
         <Text style={Global.subText}>Group reading made easy</Text>
         <View style={Global.bottom}>
