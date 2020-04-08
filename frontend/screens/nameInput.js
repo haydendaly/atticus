@@ -9,46 +9,44 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  AsyncStorage
 } from 'react-native';
-import users from "../functions/users";
+import users from '../functions/users';
+var uuid = require('uuid');
 
-export default function PhoneInput({ navigation }) {
-  const [number, setNumber] = React.useState("");
-  const [errorMsg, changeErrorMsg] = React.useState("#fff");
+export default function NameInput({ navigation }) {
+  const number = navigation.getParam('number');
 
-  const doneTapped = () => {
-    let text = number;
-    if (text.length == 10) {
-      users.phoneAuth(text, data => {
-        if (data) {
-            navigation.navigate("TextVerification", {
-              code: data.code,
-              number: text
-            });
-          } else {
-            changeErrorMsg('#8b0000');
-          }
-      });
+  const [value, changeText] = React.useState('');
+  const [errorMsg, changeErrorMsg] = React.useState('#fff')
+
+  var userID = uuid.v4();
+
+  function doneTapped() {
+    if (value.length > 1) {
+      users.create(value, number, userID, (data) => {
+        AsyncStorage.setItem('userID', userID);
+        AsyncStorage.setItem('number', number);
+        AsyncStorage.setItem('name', value);
+        navigation.navigate('HomeStack');
+      })
     } else {
-      changeErrorMsg(text.length > 10 ? "#8b0000" : "#fff");
+      changeErrorMsg(text.length > 1 ? '#8b0000' : '#fff')
     }
-  };
-
+  }
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.header}>What's your number?</Text>
-        <Text style={styles.subHeader}>We just need your number for verification and won't spam you or sell your data.</Text>
+        <Text style={styles.header}>What's your name?</Text>
+        <Text style={styles.subHeader}>This is so your friends know who you are.</Text>
       </View>
-      <TextInput
-        style={styles.input}
-        keyboardType={"phone-pad"}
-        placeholder="(123)-456-7890"
-        textAlign={"center"}
+      <TextInput style={styles.input}
+        placeholder='Atticus Finch'
+        textAlign={'center'}
         autoFocus={true}
-        autoCompleteType={"tel"}
-        onChangeText={val => setNumber(val)}
+        onChangeText={text => changeText(text)}
+        value={value}
       />      
       <TouchableOpacity
         style={styles.doneButton}
@@ -60,7 +58,7 @@ export default function PhoneInput({ navigation }) {
         </View>
       </TouchableOpacity>
       <View>
-        <Text style={{ color: errorMsg }}>Invalid Input, Please Try Again</Text>
+        <Text style={{color: errorMsg}}>Invalid Input, Please Try Again</Text>
       </View>
     </View>
   );

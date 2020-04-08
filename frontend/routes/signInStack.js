@@ -1,11 +1,12 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import React from 'react';
-import { Button, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GetStarted from '../screens/getStarted';
 import PhoneInput from '../screens/phoneInput';
 import TextVerification from '../screens/textVerification';
+import NameInput from '../screens/nameInput';
 
 const screens = {
   GetStarted: {
@@ -53,6 +54,18 @@ const screens = {
             />
           </TouchableOpacity>
           ),
+      }
+    }
+  },
+  NameInput: {
+    screen: NameInput,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Name Input',
+        headerStyle: { backgroundColor: '#2d95d1' },
+        gestureEnabled: false,
+        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
       }
     }
   }

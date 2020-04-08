@@ -1,10 +1,10 @@
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-import React from 'react';
 import { Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props'
 import SignInStack from './signInStack';
 import HomeStack from './homeStack';
+import LoadingScreen from '../screens/loadingScreen';
 
 setCustomText({
   style: {
@@ -13,13 +13,22 @@ setCustomText({
   }
 }) 
 
-
 const screens = {
+  LoadingScreen: {
+    screen: LoadingScreen,
+    navigationOptions: () => {
+      return {
+        headerShown: false,
+        gestureEnabled: false,
+      };
+    }
+  },
   SignInStack: {
     screen: SignInStack,
     navigationOptions: () => {
       return {
-        headerShown: false
+        headerShown: false,
+        gestureEnabled: false,
       };
     }
   },
@@ -27,12 +36,18 @@ const screens = {
     screen: HomeStack,
     navigationOptions: () => {
       return {
-        headerShown: false
+        headerShown: false,
+        gestureEnabled: false,
       };
     }
   }
 };
 
-const MainStack = createStackNavigator(screens);
+const MainStack = createStackNavigator(screens, {
+    initialRouteName: 'LoadingScreen',
+    defaultNavigationOptions: {
+    ...TransitionPresets.FadeFromBottomAndroid
+  }
+});
 
 export default createAppContainer(MainStack);

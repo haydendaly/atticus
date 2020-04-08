@@ -15,3 +15,6 @@ module.exports.getClubs = require('./getClubs');
 
 // User token (for notifications)
 module.exports.updateToken = require('./updateToken');
+
+// Phone Auth
+module.exports.phoneAuth = require('./phoneAuth');

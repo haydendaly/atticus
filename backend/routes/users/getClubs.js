@@ -46,7 +46,7 @@ module.exports = async function (req, res) {
                 title: data[club].title,
                 author: data[club].author,
                 bookID: data[club].bookID,
-                clubID: result.clubID
+                clubID: result[club].clubID
               })
             }
             res.json(mutableList)

@@ -8,27 +8,44 @@ import {
   Text,
   View,
   StyleSheet,
-  TouchableOpacity,
-  TextInput
+  TextInput,
 } from 'react-native';
 
 export default function PhoneInput({ navigation }) {
+  const number = navigation.getParam('number');
+  const code = navigation.getParam('code');
+
+  const [value, changeText] = React.useState('');
+  const [errorMsg, changeErrorMsg] = React.useState('#fff')
+
+  function onChangeText(text) {
+    changeText(text);
+    if (text == code) {
+      navigation.navigate('NameInput', {
+        number: number
+      });
+    } else {
+      changeErrorMsg(text.length > 5 ? '#8b0000' : '#fff')
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.header}>What's your code?</Text>
         <Text style={styles.subHeader}>You should shortly receive an SMS verification code.</Text>
       </View>
-      <TextInput placeholder='123456' textAlign={'center'} autoFocus={true} style={styles.input} keyboardType={'phone-pad'} />
-      <TouchableOpacity
-        style={styles.doneButton}
-        activeOpacity={0.75}
-        onPress={() => navigation.navigate('HomeStack')}
-      >
-        <View>
-          <Text style={styles.buttonText}>Done</Text>
-        </View>
-      </TouchableOpacity>
+      <TextInput style={styles.input}
+        keyboardType={'phone-pad'}
+        placeholder='123456'
+        textAlign={'center'}
+        autoFocus={true}
+        onChangeText={text => onChangeText(text)}
+        value={value}
+      />
+      <View>
+        <Text style={{color: errorMsg}}>Invalid Input, Please Try Again</Text>
+      </View>
     </View>
   );
 }

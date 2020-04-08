@@ -9,22 +9,14 @@ Implement Club Join / Creation Screen:
   - Build UI
   - Connect functions from './functions/clubs'
 
-Implement Search
-  - Build UI
-  - Connect to Book Screen
-  - Connect function from './functions/books'
-
 Implement Club Screen
-  - Pass info through navigator
   - Display club Info
   - Display user progress
   - Implement Club Info Screen
     - Leave Club, Invite Code, etc
 
 Implement Book Screen
-  - Pass info through navigator
-  - Display book info
-    - Open window to Amazon affiliate link
+  - Open window to Amazon affiliate link
   - Implement Club Creation Screen
     - Build UI
     - Connect functions from './functions/clubs'

@@ -17,7 +17,7 @@ module.exports = {
             callback([]);
         })
     },
-    create: function(name, number, deviceID, callback) {
+    create: function(name, number, userID, callback) {
         fetch('https://bookclub-hd.herokuapp.com/users/create', {
             method: 'POST',
             headers: {
@@ -27,7 +27,7 @@ module.exports = {
             body: JSON.stringify({
                 name: name,
                 number: number,
-                deviceID: deviceID
+                userID: userID
             })
         })
         .then((response) => response.json())
@@ -108,5 +108,18 @@ module.exports = {
             console.log(JSON.stringify(error));
             callback([]);
         })
-    }
+    },
+    phoneAuth: function(number, callback) {
+        fetch('https://bookclub-hd.herokuapp.com/users/phoneAuth/' + number + "/", {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson);
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error));
+            callback([]);
+        })
+    },
 }

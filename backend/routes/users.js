@@ -20,4 +20,7 @@ router.get('/getClubs/:userID', users.getClubs);
 // User token (for notifications)
 router.get('/updateToken/:userID/:newToken', users.updateToken);
 
+// Phone auth
+router.get('/phoneAuth/:phoneNumber', users.phoneAuth);
+
 module.exports = router;
