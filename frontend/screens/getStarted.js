@@ -5,6 +5,7 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
+import { Global } from '../styles/Global'
 
 export default function GetStarted({ navigation }) {
   const pressHandler = () => {
@@ -21,54 +22,19 @@ export default function GetStarted({ navigation }) {
 
   return (
     <ImageBackground source={imageHolder[currentImageIndex]} style={{width: '100%', height: '100%'}}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Atticus</Text>
-        <Text style={styles.subText}>Group reading made easy</Text>
-        <View style={styles.bottom}>
+      <View style={Global.container}>
+        <Text style={Global.text}>Atticus</Text>
+        <Text style={Global.subText}>Group reading made easy</Text>
+        <View style={Global.bottom}>
           <TouchableOpacity
-            style={styles.getStartedButton}
+            style={Global.doneButton}
             activeOpacity={0.75}
             onPress={pressHandler}
           >
-            <Text style={styles.buttonText}>Get Started</Text>
+            <Text style={Global.buttonText}>Get Started</Text>
           </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center"
-  },
-  text: {
-    marginTop: 50,
-    fontSize: 56,
-    color: "#20639B",
-    fontWeight: "bold"
-  },
-  subText: {
-    fontSize: 28,
-    color: "#FFFFFF"
-  },
-  getStartedButton: {
-    backgroundColor: "#20639B",
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 8
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "500"
-  },
-  bottom: {
-    flex: 1,
-    width: "85%",
-    justifyContent: "flex-end",
-    marginBottom: 36
-  }
-});

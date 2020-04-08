@@ -7,9 +7,13 @@ import React, { useState } from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   TextInput,
+  AsyncStorage,
+  Keyboard
 } from 'react-native';
+import users from "../functions/users";
+import books from "../functions/books";
+import { Global } from '../styles/Global';
 
 export default function PhoneInput({ navigation }) {
   const number = navigation.getParam('number');
@@ -21,21 +25,39 @@ export default function PhoneInput({ navigation }) {
   function onChangeText(text) {
     changeText(text);
     if (text == code) {
-      navigation.navigate('NameInput', {
-        number: number
-      });
+      users.get(number, data => {
+        if (data) {
+          AsyncStorage.setItem('userID', number);
+          AsyncStorage.setItem('number', number);
+          AsyncStorage.setItem('name', data.name);
+          Keyboard.dismiss()
+          books.getHomescreen(books => {
+            users.getClubs('temp', true, clubs => {
+              navigation.navigate('HomeStack', {
+                books: books,
+                clubs: clubs,
+                userID: number
+              });
+            })
+          })
+        } else {
+          navigation.navigate('NameInput', {
+            number: number
+          });
+        }
+      })
     } else {
       changeErrorMsg(text.length > 5 ? '#8b0000' : '#fff')
     }
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.header}>What's your code?</Text>
-        <Text style={styles.subHeader}>You should shortly receive an SMS verification code.</Text>
+    <View style={Global.container}>
+      <View style={Global.textContainer}>
+        <Text style={Global.header}>What's your code?</Text>
+        <Text style={Global.subHeader}>You should shortly receive an SMS verification code.</Text>
       </View>
-      <TextInput style={styles.input}
+      <TextInput style={Global.input}
         keyboardType={'phone-pad'}
         placeholder='123456'
         textAlign={'center'}
@@ -49,49 +71,3 @@ export default function PhoneInput({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 40,
-    color: '#143e60',
-    fontWeight: '600'
-  },
-  subHeader: {
-    fontSize: 20,
-    color: '#143e60',
-    padding: '5%',
-    fontWeight: '400',
-    textAlign: 'center'
-  },
-  textContainer: {
-    flex: .5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  doneButton: {
-    backgroundColor: '#20639B',
-    width: '85%',
-    padding: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: '500'
-  },
-  input: {
-    width: '60%',
-    borderWidth: 2,
-    borderColor: '#143e60',
-    margin: 8,
-    padding: 18,
-    borderRadius: 8,
-    fontSize: 24
-  }
-});

@@ -7,6 +7,8 @@ import ClubView from '../screens/clubView';
 import BookView from '../screens/bookView'
 import SearchView from '../screens/searchView';
 import CreateView from '../screens/createView';
+import ClubInfoView from '../screens/clubInfoView';
+import { Global } from '../styles/Global';
 
 const screens = {
   HomeScreen: {
@@ -15,8 +17,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Atticus',
-        headerStyle: { backgroundColor: '#2d95d1' },
-        headerTitleStyle: { color: '#FFF', fontSize: 28, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         gestureEnabled: false,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('SearchView')} style={{paddingLeft: 16, paddingBottom: 4}}>
@@ -45,8 +47,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Club View',
-        headerStyle: { backgroundColor: '#20639B' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
             <Icon
@@ -55,7 +57,16 @@ const screens = {
               size={32}
             />
           </TouchableOpacity>
-          ),
+        ),
+        headerRight: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('ClubInfoView')} style={{paddingRight: 8}}>
+            <Icon
+              name='info-circle'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+        ),
       }
     }
   },
@@ -65,8 +76,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Book View',
-        headerStyle: { backgroundColor: '#20639B' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
             <Icon
@@ -85,8 +96,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Search View',
-        headerStyle: { backgroundColor: '#20639B' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
             <Icon
@@ -105,8 +116,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Join a Club',
-        headerStyle: { backgroundColor: '#20639B' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
             <Icon
@@ -118,7 +129,27 @@ const screens = {
           ),
       }
     }
-  }
+  },
+  ClubInfoView: {
+    screen: ClubInfoView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Club Info',
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
+    }
+  },
 };
 
 const HomeStack = createStackNavigator(screens);

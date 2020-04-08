@@ -5,6 +5,9 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
+import { useScreens } from 'react-native-screens';
+import books from "../functions/books";
+import users from "../functions/users";
 
 export default class LoadingScreen extends Component {
   componentDidMount() {
@@ -12,15 +15,29 @@ export default class LoadingScreen extends Component {
   }
 
   checkIfLoggedIn = () => {
-    setTimeout( () => {
-      AsyncStorage.getItem('userID').then((value) => {
-        if (value != null && value != '') {
-          this.props.navigation.navigate('HomeStack');
-        } else {
+    AsyncStorage.getItem('userID').then((value) => {
+      if (value != null && value != '') {
+        users.doesExist(value, bool => {
+          if (bool) {
+            books.getHomescreen(books => {
+              users.getClubs('temp', true, clubs => {
+                this.props.navigation.navigate('HomeStack', {
+                  books: books,
+                  clubs: clubs,
+                  userID: value
+                });
+              })
+            })
+          } else {
+            this.props.navigation.navigate('SignInStack');
+          }
+        })
+      } else {
+        setTimeout( () => {
           this.props.navigation.navigate('SignInStack');
-        }
-      })
-    }, 300)
+        }, 300)
+      }
+    })
   };
 
   render() {
@@ -35,6 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#20639B'
+    backgroundColor: '#2d95d1'
   }
 });

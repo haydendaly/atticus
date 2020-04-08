@@ -4,9 +4,9 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 #################################################*/
 
 import React, { useState, useEffect } from "react"
-import books from "../functions/books"
-import users from "../functions/users"
-import clubs from "../functions/clubs"
+import books from "../functions/books";
+import users from '../functions/users';
+import clubs from "../functions/clubs";
 import {
   Text,
   View,
@@ -17,39 +17,33 @@ import {
   Image,
   Dimensions,
 } from "react-native"
+import { Global } from '../styles/Global';
 
 export default class GetStarted extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      books: [],
-      clubList: [],
-      userID: "temp"
-    }
-    books.getHomescreen(books => {
-      users.getClubs(this.state.userID, true, clubs => {
-        this.setState({
-          books: books,
-          clubList: clubs
-        })
-      })
-    })
+    this.state = this.props.navigation.state.params
+    // users.getClubs('temp', true, clubs => {
+    //   this.setState({
+    //     clubs: clubs
+    //   })
+    // })
   }
 
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <Text style={styles.clubText}>Your Clubs</Text>
+          <Text style={Global.clubText}>Your Clubs</Text>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={this.state.clubList}
+            data={this.state.clubs}
             renderItem={({ item }) => (
-              <View style={styles.clubHolder1}>
-                <View style={styles.clubHolder}>
+              <View style={{paddingLeft: Dimensions.get("screen").width * 0.025 }}>
+                <View style={[Global.clubHolder, {width: Dimensions.get("screen").width * 0.9 }]}>
                   <TouchableOpacity
-                    style={styles.clubImage}
+                    style={Global.clubImage}
                     onPress={() => {
                       clubs.get(item.clubID, (club) => {
                         books.get(club.bookID, (book) => {
@@ -72,9 +66,9 @@ export default class GetStarted extends React.Component {
                       style={{ width: "100%", height: "100%", borderRadius: 8 }}
                     ></Image>
                   </TouchableOpacity>
-                  <View style={styles.clubInfo}>
-                    <Text style={styles.clubTitle}>{item.title}</Text>
-                    <Text style={styles.clubAuthor}>By {item.author}</Text>
+                  <View style={{width: Dimensions.get("screen").width * 0.9 - 120}}>
+                    <Text style={Global.clubTitle}>{item.title}</Text>
+                    <Text style={Global.clubAuthor}>By {item.author}</Text>
                   </View>
                 </View>
               </View>
@@ -86,7 +80,7 @@ export default class GetStarted extends React.Component {
           data={this.state.books}
           renderItem={({ item }) => (
             <View>
-              <Text style={styles.bookText}>{item.title}</Text>
+              <Text style={Global.bookText}>{item.title}</Text>
               <FlatList
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -94,7 +88,7 @@ export default class GetStarted extends React.Component {
                 renderItem={({ item }) => (
                   <View style={{ paddingLeft: 10 }}>
                     <TouchableOpacity
-                      style={styles.book}
+                      style={Global.book}
                       onPress={() => {
                         books.get(item.bookID, (data) => {
                           this.props.navigation.navigate("BookView", data)
@@ -122,62 +116,3 @@ export default class GetStarted extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff"
-  },
-  clubText: {
-    marginTop: "4%",
-    fontSize: 24,
-    paddingLeft: "4%",
-    color: "#143e60",
-    fontWeight: "500",
-    marginBottom: "1%"
-  },
-  bookText: {
-    fontSize: 24,
-    paddingLeft: "4%",
-    color: "#143e60",
-    fontWeight: "500",
-    marginTop: "4%",
-    marginBottom: "1%"
-  },
-  clubHolder1: {
-    paddingLeft: Dimensions.get("screen").width * 0.025
-  },
-  clubHolder: {
-    width: Dimensions.get("screen").width * 0.9,
-    height: 185,
-    backgroundColor: "#155149",
-    borderRadius: 8,
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  clubImage: {
-    width: 113.33,
-    height: 165,
-    borderRadius: 2,
-    paddingLeft: 10,
-    marginTop: 10
-  },
-  book: {
-    width: 100,
-    height: 150,
-    borderRadius: 7
-  },
-  clubInfo: {
-    width: Dimensions.get("screen").width * 0.9 - 120
-  },
-  clubTitle: {
-    fontSize: 24,
-    color: "#fff",
-    marginTop: 10
-  },
-  clubAuthor: {
-    justifyContent: "space-between",
-    marginTop: 5,
-    color: "#bbb"
-  }
-})

@@ -58,7 +58,7 @@ module.exports = {
         })
     },
     doesExist: function(userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/users/doesExist' + userID, {
+        fetch('https://bookclub-hd.herokuapp.com/users/doesExist/' + userID, {
             method: 'GET'
         })
         .then((response) => response.json())
@@ -71,7 +71,7 @@ module.exports = {
         })
     },
     delete: function(userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/users/delete' + userID, {
+        fetch('https://bookclub-hd.herokuapp.com/users/delete/' + userID, {
             method: 'GET'
         })
         .then((response) => response.json())

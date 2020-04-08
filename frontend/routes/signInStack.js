@@ -7,6 +7,7 @@ import GetStarted from '../screens/getStarted';
 import PhoneInput from '../screens/phoneInput';
 import TextVerification from '../screens/textVerification';
 import NameInput from '../screens/nameInput';
+import { Global } from '../styles/Global';
 
 const screens = {
   GetStarted: {
@@ -23,8 +24,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Phone Number',
-        headerStyle: { backgroundColor: '#2d95d1' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('GetStarted')} style={{paddingLeft: 8}}>
             <Icon
@@ -43,8 +44,8 @@ const screens = {
       return {
         headerShown: true,
         title: 'Verification',
-        headerStyle: { backgroundColor: '#2d95d1' },
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate('PhoneInput')} style={{paddingLeft: 8}}>
             <Icon
@@ -63,9 +64,9 @@ const screens = {
       return {
         headerShown: true,
         title: 'Name Input',
-        headerStyle: { backgroundColor: '#2d95d1' },
-        gestureEnabled: false,
-        headerTitleStyle: { color: '#FFF', fontSize: 24, fontWeight: '500'},
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
+        gestureEnabled: false
       }
     }
   }
