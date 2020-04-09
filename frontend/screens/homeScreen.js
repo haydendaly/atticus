@@ -16,6 +16,7 @@ import {
   ScrollView,
   Image,
   Dimensions,
+  BackHandler
 } from "react-native"
 import { Global } from '../styles/Global';
 
@@ -28,6 +29,18 @@ export default class GetStarted extends React.Component {
     //     clubs: clubs
     //   })
     // })
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+      return true;
   }
 
   render() {

@@ -3,14 +3,22 @@ For: SSW 322
 By: Bruno, Hayden, Madeline, Miriam, and Scott
 #################################################*/
 
-import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, TouchableOpacity, ImageBackground, BackHandler } from "react-native";
 import { Global } from '../styles/Global'
 
 export default function GetStarted({ navigation }) {
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () => true)
+  }, [])
+
   const pressHandler = () => {
     navigation.push("PhoneInput");
   };
+
   const imageHolder = [require('../assets/GetStarted/1.jpg'), require('../assets/GetStarted/2.jpg'), require('../assets/GetStarted/3.jpg')]
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   setTimeout(() => {
