@@ -3,7 +3,7 @@ For: SSW 322
 By: Bruno, Hayden, Madeleine, Miriam, and Scott
 #################################################*/
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import books from "../functions/books";
 import users from '../functions/users';
 import clubs from "../functions/clubs";
@@ -12,7 +12,6 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
   ScrollView,
   Image,
   Dimensions,
@@ -33,10 +32,21 @@ export default class GetStarted extends React.Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    this.willFocusSubscription = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        users.getClubs(this.state.userID, true, clubs => {
+          this.setState({
+            clubs: clubs
+          })
+        })
+      }
+    )
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    this.willFocusSubscription.remove();
   }
 
   handleBackButton() {

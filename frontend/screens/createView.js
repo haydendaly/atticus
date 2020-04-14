@@ -5,36 +5,48 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity,
-    TextInput, Button } from "react-native";
+    TextInput, Button, AsyncStorage } from "react-native";
+import clubs from '../functions/clubs';
 
 export default function ClubView({ navigation }) {
+  const [value, changeText] = React.useState('');
+
   return (
     <View style={styles.container}>
       
       <TouchableOpacity
         style={styles.inviteCodeButton}
         activeOpacity={0.75}
-      //  onPress={() => navigation.navigate('HomeStack')}
       >
-      <TextInput placeholder='Invite Code' placeholderTextColor={'black'} textAlign={'center'} autoFocus={true} style={styles.input} keyboardType={'default'} />
+      <TextInput placeholder='Invite Code' placeholderTextColor={'black'} textAlign={'center'} style={styles.input} keyboardType={'default'} onChangeText={text => {changeText(text)}}/>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.joinClubButton}
         activeOpacity={0.75}
-      //  onPress={() => navigation.navigate('HomeStack')}
+        onPress={() => {
+          console.log(value)
+          if (value.length > 4) {
+            AsyncStorage.getItem('userID').then(userID => {
+              clubs.join(value, userID, data => {
+                navigation.navigate('HomeScreen');
+              })
+            })
+          }
+        }}
       >
-      <TextInput placeholder='Join Club' placeholderTextColor={'white'} textAlign={'center'} autoFocus={true} style={styles.input} keyboardType={'default'} />
+        <Text style={{color: 'white', textAlign: 'center'}}>Join Club</Text>
       </TouchableOpacity>
 
       <Text style={styles.text}> Or </Text>
-
       <TouchableOpacity
         style={styles.searchButton}
         activeOpacity={0.75}
-      //  onPress={() => navigation.navigate('HomeStack')}
+        onPress={() => {
+          navigation.navigate('SearchView');
+        }}
       >
-      <TextInput placeholder='Search and Create Club' placeholderTextColor={'white'} textAlign={'center'} autoFocus={true} style={styles.input} keyboardType={'default'} />
+        <Text style={{color: 'white', textAlign: 'center'}}>Search and Create a Club</Text>
       </TouchableOpacity>
 
     </View>

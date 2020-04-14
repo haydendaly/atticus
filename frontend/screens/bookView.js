@@ -5,8 +5,9 @@ By: Bruno, Hayden, Madeleine, Miriam, and Scott
 
 import React, { useState } from 'react';
 import {
-  Text, View, StyleSheet, TouchableOpacity, TextInput, Button, Image
+  Text, View, StyleSheet, TouchableOpacity, TextInput, Button, Image, AsyncStorage
 } from 'react-native';
+import clubs from '../functions/clubs';
 
 
 export default class BookView extends React.Component {
@@ -33,6 +34,13 @@ export default class BookView extends React.Component {
           <Button
           style={styles.button}
           title="Create A Club"
+          onPress={() => {
+            AsyncStorage.getItem('userID').then(value => {
+              clubs.create(this.state.bookID, value, (data) => {
+                this.props.navigation.navigate('HomeScreen');
+              })
+            })
+          }}
           />
         </View>
       </View>
