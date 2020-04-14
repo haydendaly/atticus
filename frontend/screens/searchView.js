@@ -49,7 +49,7 @@ export default function ClubView({ navigation }) {
 			    <Image source={{ uri: item.imgURL}} style={styles.bookImage}>
 				</Image>
 				<View style={styles.bookInfo}>
-			      <Text style={styles.bookTitle}>{item.title}</Text>
+			      <Text style={styles.bookTitle}>{item.title.length<=60?item.title:(item.title.slice(0,60)+"...")}</Text>
 				  <Text style={styles.clubAuthor}>By {item.author}</Text>
 			    </View>
 			  </TouchableOpacity>
