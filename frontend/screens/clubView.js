@@ -23,6 +23,8 @@ function ClubView(props) {
     const book = props.navigation.state.params[1]
     const userID = props.navigation.state.params[3]
 
+    const [pageProgress, setPageProgress] = useState(0)
+
     return (
         <View style={styles.container}>
             <Image
@@ -48,7 +50,8 @@ function ClubView(props) {
             <View style={styles.pageCountContainer}>
                 <TextInput
                     style={styles.pageCountInput}
-                    onChangeText={(text) => console.warn(text)}
+                    value={"" + pageProgress}
+                    onChangeText={(progress) => setPageProgress(progress)}
                 ></TextInput>
                 <Text style={styles.pageCountTotal}> / {pageTotal}</Text>
             </View>
@@ -62,7 +65,7 @@ function ClubView(props) {
             <View style={styles.connectorBall}></View>
             <View style={styles.connectorBar}></View>
             <View style={styles.connectorBall}></View>
-            <Text style={styles.text}>Here's how your friends are pooing!</Text>
+            <Text style={styles.text}>Here's how your friends are doing!</Text>
             <View style={styles.friendContainer}>
                 <FlatList
                     horizontal={true}
