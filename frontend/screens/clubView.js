@@ -18,9 +18,9 @@ import {
 function ClubView(props) {
     const club = props.navigation.state.params[0]
     const currentUserProgress = props.navigation.state.params[4]
-    const pageTotal = 100
     const friends = props.navigation.state.params[2]
     const book = props.navigation.state.params[1]
+    const pageTotal = book.pages
     const userID = props.navigation.state.params[3]
 
     const [pageProgress, setPageProgress] = useState(0)
