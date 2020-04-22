@@ -29,7 +29,6 @@ function rateMessage(end_date, progress, book) {
 
 export default class ClubInfoView extends React.Component {
   constructor(props) {
-	console.log(props);
     super(props)
 	this.state = {
 		club: this.props.navigation.state.params[0],
