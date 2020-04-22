@@ -56,8 +56,8 @@ export default class ClubInfoView extends React.Component {
     return (
       <View style={Global.container}>
 	    <View style={{flex:1, alignItems:'center'}}>
-	      <Text style={[Global.bookText, {marginTop:'15%', paddingLeft:0, textAlign:'center'}]}>{rateMessage(this.state.end, this.state.progress, this.state.book)}</Text>
-	      <Text style={[Global.bookText, {marginTop:"10%", paddingLeft:0}]}>Invite Code</Text>
+	      <Text style={[Global.bookText, {marginTop:50, paddingLeft:0, textAlign:'center'}]}>{rateMessage(this.state.end, this.state.progress, this.state.book)}</Text>
+	      <Text style={[Global.bookText, {marginTop:50, paddingLeft:0}]}>Invite Code</Text>
 	      <TouchableOpacity onPress={this.writeToClipboard} style={Global.input}>
 		    <View>
 		      <Text style={{textAlign:"center", fontSize:24}}>{this.state.club.clubID}</Text>
@@ -65,7 +65,7 @@ export default class ClubInfoView extends React.Component {
 	      </TouchableOpacity>
 		</View>
 		<TouchableOpacity onPress={this.leaveClub}>
-		  <View style={{height:'15%'}}>
+		  <View style={{height:150}}>
 		    <Text style={{color:'red', textDecorationLine:'underline', fontSize:24}}>Leave Club</Text>
           </View>
 		</TouchableOpacity>
