@@ -59,7 +59,7 @@ const screens = {
           </TouchableOpacity>
         ),
         headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('ClubInfoView')} style={{paddingRight: 8}}>
+          <TouchableOpacity onPress={() => navigation.navigate('ClubInfoView', navigation.state.params)} style={{paddingRight: 8}}>
             <Icon
               name='info-circle'
               color='#FFF'
