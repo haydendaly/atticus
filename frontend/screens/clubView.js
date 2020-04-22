@@ -3,7 +3,7 @@ For: SSW 322
 By: Bruno, Hayden, Madeleine, Miriam, and Scott
 #################################################*/
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
     Text,
     View,
@@ -14,6 +14,7 @@ import {
     Image,
     FlatList,
 } from "react-native"
+import { update, get, updateProgress } from "../functions/clubs"
 
 function ClubView(props) {
     const club = props.navigation.state.params[0]
@@ -23,7 +24,27 @@ function ClubView(props) {
     const pageTotal = book.pages
     const userID = props.navigation.state.params[3]
 
-    const [pageProgress, setPageProgress] = useState(0)
+    const [pageProgress, setPageProgress] = useState(currentUserProgress)
+    // update(club.clubID, {
+    //     users: {
+    //         userID: userID,
+    //         progress: pageProgress,
+    //     },
+    // })
+    function updateProgressCallback(e) {
+        console.warn("update progress callback", e)
+    }
+    useEffect(() => {
+        // console.warn(club.clubID)
+        get(club.clubID, (e) => console.warn(e))
+        console.warn("page progress:", pageProgress)
+        updateProgress(
+            club.clubID,
+            userID,
+            pageProgress,
+            updateProgressCallback
+        )
+    }, [pageProgress])
 
     return (
         <View style={styles.container}>

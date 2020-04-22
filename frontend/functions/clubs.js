@@ -4,108 +4,129 @@ By: Bruno, Hayden, Madeline, Miriam, and Scott
 #################################################*/
 
 module.exports = {
-    create: function(bookID, userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/create', {
-            method: 'POST',
+    create: function (bookID, userID, callback) {
+        fetch("https://bookclub-hd.herokuapp.com/clubs/create", {
+            method: "POST",
             headers: {
-            Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                Accept: "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 bookID: bookID,
-                userID: userID
+                userID: userID,
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
             })
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback(null);
-        })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback(null)
+            })
     },
-    get: function(clubID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/get/' + clubID, {
-            method: 'GET'
+    get: function (clubID, callback) {
+        fetch("https://bookclub-hd.herokuapp.com/clubs/get/" + clubID, {
+            method: "GET",
         })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.warn("response JSON:", responseJson)
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback([])
+            })
     },
-    delete: function(clubID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/delete/' + clubID, {
-            method: 'GET'
+    delete: function (clubID, callback) {
+        fetch("https://bookclub-hd.herokuapp.com/clubs/delete/" + clubID, {
+            method: "GET",
         })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback([])
+            })
     },
-    update: function(clubID, body, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/update/' + clubID, {
-            method: 'POST',
+    update: function (clubID, body, callback) {
+        fetch("https://bookclub-hd.herokuapp.com/clubs/update/" + clubID, {
+            method: "POST",
             headers: {
-            Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                Accept: "application/json",
+                "Content-Type": "application/json",
             },
-            body: body
+            body: body,
         })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback(null);
-        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback(null)
+            })
     },
-    join: function(clubID, userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/join/' + clubID + "/" + userID, {
-            method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
+    join: function (clubID, userID, callback) {
+        fetch(
+            "https://bookclub-hd.herokuapp.com/clubs/join/" +
+                clubID +
+                "/" +
+                userID,
+            {
+                method: "GET",
+            }
+        )
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback([])
+            })
     },
-    leave: function(clubID, userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/leave/' + clubID + "/" + userID, {
-            method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
+    leave: function (clubID, userID, callback) {
+        fetch(
+            "https://bookclub-hd.herokuapp.com/clubs/leave/" +
+                clubID +
+                "/" +
+                userID,
+            {
+                method: "GET",
+            }
+        )
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback([])
+            })
     },
-    updateProgress: function(userID, callback) {
-        fetch('https://bookclub-hd.herokuapp.com/clubs/updateProgress/' + clubID + "/" + userID, {
-            method: 'GET'
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            callback(responseJson);
-        })
-        .catch((error) => {
-            console.log(JSON.stringify(error));
-            callback([]);
-        })
+    updateProgress: function (clubID, userID, progress, callback) {
+        fetch(
+            "https://bookclub-hd.herokuapp.com/clubs/updateProgress/" +
+                clubID +
+                "/" +
+                userID +
+                "/" +
+                progress,
+            {
+                method: "GET",
+            }
+        )
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson)
+            })
+            .catch((error) => {
+                console.log(JSON.stringify(error))
+                callback([])
+            })
     },
 }
