@@ -32,12 +32,9 @@ function ClubView(props) {
     //     },
     // })
     function updateProgressCallback(e) {
-        console.warn("update progress callback", e)
+        update(club.clubID, {}, (cb) => console.warn("normal update cb", cb))
     }
     useEffect(() => {
-        // console.warn(club.clubID)
-        get(club.clubID, (e) => console.warn(e))
-        console.warn("page progress:", pageProgress)
         updateProgress(
             club.clubID,
             userID,
