@@ -115,7 +115,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerShown: true,
-        title: 'Join a Club',
+        title: 'Connect',
         headerStyle: Global.headerStyle,
         headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
