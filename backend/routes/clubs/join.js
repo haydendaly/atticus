@@ -43,39 +43,45 @@ module.exports = async function (req, res) {
   }, {
     _id : 0
   }).then(result => {
-    if (result != null) {
-      var bool = true;
-      for (elem in result.users) {
-        if (req.params.userID == result.users[elem].userID) {
-          bool = false
+    modelDict.user.findOne({
+      'userID' : req.params.userID
+    }).then(userResult => {
+      console.log(userResult)
+      if (result != null) {
+        var bool = true;
+        for (elem in result.users) {
+          if (req.params.userID == result.users[elem].userID) {
+            bool = false
+          }
         }
-      }
-      if (bool) {
-        result.users.push({
-          userID: req.params.userID,
-          progress: 0
-        })
-      }
-      modelDict.club.updateOne({
-        'clubID' : req.params.clubID
-      }, {
-        'users' : result.users
-      }, {
-        _id : 0
-      }).then(result => {
-        if (result.n == 1) {
-          updateClub(req.params.userID, req.params.clubID, function(data) {
-            res.json(data);
-          });
-        } else {
-          res.json(false);
+        if (bool) {
+          result.users.push({
+            userID: req.params.userID,
+            progress: 0,
+            name: userResult.name
+          })
         }
-      }).catch(err => {
-        res.status(500).json(err);
-      });
-    } else {
-      res.json(false);
-    };
+        modelDict.club.updateOne({
+          'clubID' : req.params.clubID
+        }, {
+          'users' : result.users
+        }, {
+          _id : 0
+        }).then(result => {
+          if (result.n == 1) {
+            updateClub(req.params.userID, req.params.clubID, function(data) {
+              res.json(data);
+            });
+          } else {
+            res.json(false);
+          }
+        }).catch(err => {
+          res.status(500).json(err);
+        });
+      } else {
+        res.json(false);
+      };
+    })
   }).catch(err => {
     res.status(500).json(err)
   });

@@ -22,7 +22,7 @@ export default function NameInput({ navigation }) {
   const number = navigation.getParam('number');
 
   const [value, changeText] = React.useState('');
-  const [errorMsg, changeErrorMsg] = React.useState('#fff')
+  const [errorMsg, changeErrorMsg] = React.useState('#eee')
 
   // var userID = uuid.v4();
 
@@ -42,7 +42,7 @@ export default function NameInput({ navigation }) {
         })
       })
     } else {
-      changeErrorMsg(text.length > 1 ? '#8b0000' : '#fff')
+      changeErrorMsg(text.length > 1 ? '#8b0000' : '#eee')
     }
   }
   return (
@@ -57,7 +57,7 @@ export default function NameInput({ navigation }) {
         autoFocus={true}
         onChangeText={text => changeText(text)}
         value={value}
-      />      
+      />
       <TouchableOpacity
         style={Global.doneButton}
         activeOpacity={0.75}

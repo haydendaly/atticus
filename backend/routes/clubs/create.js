@@ -79,7 +79,11 @@ module.exports = async function (req, res) {
     req.body.clubID = clubID;
     checkBook(req.body.bookID, function(title) {
       req.body.title = title;
-      req.body.users = [req.body.userID];
+      req.body.users = [{
+        userID: req.body.userID,
+        name: req.body.name,
+        progress: 0
+      }]
       var model = new modelDict.club(req.body);
       model.save(req.body)
       .then(result => {

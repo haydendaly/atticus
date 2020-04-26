@@ -4,12 +4,12 @@ export const Global = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: '#fff'
+        backgroundColor: '#eee'
     },
     text: {
         marginTop: 50,
-        fontSize: 56,
-        color: "#20639B",
+        fontSize: 75,
+        color: "#235A82",
         fontWeight: "bold"
     },
     subText: {
@@ -30,12 +30,12 @@ export const Global = StyleSheet.create({
     },
     header: {
         fontSize: 40,
-        color: '#143e60',
+        color: '#141414',
         fontWeight: '600'
     },
     subHeader: {
         fontSize: 20,
-        color: '#143e60',
+        color: '#141414',
         padding: '5%',
         fontWeight: '400',
         textAlign: 'center'
@@ -46,9 +46,9 @@ export const Global = StyleSheet.create({
         justifyContent: 'center'
     },
     doneButton: {
-        backgroundColor: '#20639B',
+        backgroundColor: '#235A82',
         width: '85%',
-        padding: 18,
+        padding: 15,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8,
@@ -59,21 +59,21 @@ export const Global = StyleSheet.create({
     input: {
         width: '60%',
         borderWidth: 2,
-        borderColor: '#143e60',
+        borderColor: '#235A82',
         margin: 8,
         padding: 18,
         borderRadius: 8,
         fontSize: 24
     },
-    headerStyle: { 
-        backgroundColor: '#2d95d1',
+    headerStyle: {
+        backgroundColor: '#235a82',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 1,
     },
-    headerTitleStyle: { 
-        color: '#FFF', 
-        fontSize: 24, 
+    headerTitleStyle: {
+        color: '#FFF',
+        fontSize: 24,
         fontWeight: '500'
     },
     clubText: {
@@ -81,14 +81,14 @@ export const Global = StyleSheet.create({
         fontSize: 24,
         paddingLeft: "4%",
         color: "#143e60",
-        fontWeight: "500",
+        fontWeight: "700",
         marginBottom: "1%"
     },
     bookText: {
         fontSize: 24,
         paddingLeft: "4%",
         color: "#143e60",
-        fontWeight: "500",
+        fontWeight: "700",
         marginTop: "4%",
         marginBottom: "1%"
     },
@@ -97,7 +97,10 @@ export const Global = StyleSheet.create({
         backgroundColor: "#155149",
         borderRadius: 8,
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 1,
     },
     clubImage: {
         width: 113.33,
@@ -123,5 +126,12 @@ export const Global = StyleSheet.create({
         justifyContent: "space-between",
         marginTop: 5,
         color: "#bbb"
-    }
+    },
+    rectangle:{
+        marginTop: 50,
+        width: 380,
+        height: 100,
+        alignItems: 'center',
+        backgroundColor:'rgba(180, 180, 180, 0.8)'
+    },
 });

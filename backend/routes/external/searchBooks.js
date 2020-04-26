@@ -49,28 +49,22 @@ var getRequest = async function (url, extension, xml, callback) {
   req.end();
 };
 
-var cleanText = function (rawText) {
-  var noB = rawText.split('<b>').join('');
-  var noOtherB = noB.split('</b>').join('');
-  var cleanText = noOtherB.split('<br />').join(' ');
-  var tokenizer = new Tokenizer('Description');
-  tokenizer.setEntry(cleanText);
-  var description = tokenizer.getSentences()[0] + ' ' + tokenizer.getSentences()[1];
-  return [cleanText, description];
-};
-
 module.exports = async function (search, callback) {
   getRequest('www.goodreads.com', '/search/index.xml/?key=' + key + '&q=' + search, true, function(books){
     var tempBook;
     var resArray = [];
     for (item in books.search[0].results[0].work) {
       tempBook = books.search[0].results[0].work[item].best_book[0];
+      var imageClean = tempBook.image_url[0].split('._SX98_').join('._SY160_');
+      if (imageClean.includes('nophoto')) {
+        imageClean = 'https://i.pinimg.com/474x/49/60/7c/49607c19eaf6e456ac6f06ad4688f337.jpg'
+      }
       if (tempBook['$'].type == 'Book') {
         resArray.push({
           'bookID' : tempBook.id[0]._,
           'title' : tempBook.title[0],
           'author' : tempBook.author[0].name[0],
-          'imgURL' : tempBook.image_url[0]
+          'imgURL' : imageClean
         });
       };
     };

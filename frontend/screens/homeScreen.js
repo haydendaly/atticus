@@ -19,15 +19,119 @@ import {
 } from "react-native"
 import { Global } from '../styles/Global';
 
+function ClubContainer({ clubsArray, userID, navigation }) {
+  if (clubsArray.length == 0) {
+    return (
+      <View>
+        <View style={{paddingLeft: Dimensions.get("screen").width * 0.03, paddingTop: 10 }}>
+          <View style={[Global.clubHolder, {width: Dimensions.get("screen").width * 0.94, flexDirection: 'column' }]}>
+            <Text style={[Global.clubTitle, {paddingLeft: 10, fontSize: 24, fontWeight: '400', color: '#eee'}]}>Welcome to Atticus! Our mission is to simplify the process of reading in groups. To get started, join or create a club.</Text>
+            <View style={{alignItems: 'center'}}>
+            <TouchableOpacity
+               style={[Global.doneButton, {bottom: 10}]}
+               activeOpacity={0.75}
+               onPress={() => {
+                 navigation.navigate('CreateView');
+               }}
+                >
+               <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>Join / Create A Club</Text>
+             </TouchableOpacity>
+             </View>
+          </View>
+        </View>
+      </View>
+    )
+  } else if (clubsArray.length == 1) {
+    return (
+      <View>
+        <Text style={Global.clubText}>Your Club</Text>
+        <View style={{paddingLeft: Dimensions.get("screen").width * 0.03 }}>
+          <View style={[Global.clubHolder, {width: Dimensions.get("screen").width * 0.94 }]}>
+            <TouchableOpacity
+              style={Global.clubImage}
+              onPress={() => {
+                clubs.get(clubsArray[0].clubID, (club) => {
+                  books.get(club.bookID, (book) => {
+                    var friends = [];
+                    var currentProgress = 0;
+                    for (var i = 0; i < club.users.length; i++) {
+                      if (club.users[i].userID != userID) {
+                        friends.push(club.users[i])
+                      } else {
+                        currentProgress = club.users[i].progress
+                      }
+                    }
+                    navigation.navigate("ClubView", [club, book, friends, userID, currentProgress])
+                  })
+                })
+              }}
+            >
+              <Image
+                source={{ uri: clubsArray[0].imgURL }}
+                style={{ width: "100%", height: "100%", borderRadius: 8 }}
+              ></Image>
+            </TouchableOpacity>
+            <View style={{width: Dimensions.get("screen").width * 0.94 - 120}}>
+              <Text style={Global.clubTitle}>{clubsArray[0].title}</Text>
+              <Text style={Global.clubAuthor}>By {clubsArray[0].author}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    )
+  } else {
+    return (
+    <View>
+      <Text style={Global.clubText}>Your Clubs</Text>
+      <FlatList
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        data={clubsArray}
+        renderItem={({ item }) => (
+          <View style={{paddingLeft: Dimensions.get("screen").width * 0.025 }}>
+            <View style={[Global.clubHolder, {width: Dimensions.get("screen").width * 0.9 }]}>
+              <TouchableOpacity
+                style={Global.clubImage}
+                onPress={() => {
+                  clubs.get(item.clubID, (club) => {
+                    books.get(club.bookID, (book) => {
+                      var friends = [];
+                      var currentProgress = 0;
+                      for (var i = 0; i < club.users.length; i++) {
+                        if (club.users[i].userID != userID) {
+                          friends.push(club.users[i])
+                        } else {
+                          currentProgress = club.users[i].progress
+                        }
+                      }
+                      navigation.navigate("ClubView", [club, book, friends, userID, currentProgress])
+                    })
+                  })
+                }}
+              >
+                <Image
+                  source={{ uri: item.imgURL }}
+                  style={{ width: "100%", height: "100%", borderRadius: 8 }}
+                ></Image>
+              </TouchableOpacity>
+              <View style={{width: Dimensions.get("screen").width * 0.9 - 120}}>
+                <Text style={Global.clubTitle}>{item.title}</Text>
+                <Text style={Global.clubAuthor}>By {item.author}</Text>
+              </View>
+            </View>
+          </View>
+        )}
+        keyExtractor={item => item.bookID}
+      />
+    </View>
+  )
+  }
+}
+
 export default class GetStarted extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.props.navigation.state.params
-    // users.getClubs('temp', true, clubs => {
-    //   this.setState({
-    //     clubs: clubs
-    //   })
-    // })
   }
 
   componentDidMount() {
@@ -56,49 +160,7 @@ export default class GetStarted extends React.Component {
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text style={Global.clubText}>Your Clubs</Text>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={this.state.clubs}
-            renderItem={({ item }) => (
-              <View style={{paddingLeft: Dimensions.get("screen").width * 0.025 }}>
-                <View style={[Global.clubHolder, {width: Dimensions.get("screen").width * 0.9 }]}>
-                  <TouchableOpacity
-                    style={Global.clubImage}
-                    onPress={() => {
-                      clubs.get(item.clubID, (club) => {
-                        books.get(club.bookID, (book) => {
-                          var friends = [];
-                          var currentProgress = 0;
-                          for (var i = 0; i < club.users.length; i++) {
-                            if (club.users[i].userID != this.state.userID) {
-                              friends.push(club.users[i])
-                            } else {
-                              currentProgress = club.users[i].progress
-                            }
-                          }
-                          this.props.navigation.navigate("ClubView", [club, book, friends, this.state.userID, currentProgress])
-                        })
-                      })
-                    }}
-                  >
-                    <Image
-                      source={{ uri: item.imgURL }}
-                      style={{ width: "100%", height: "100%", borderRadius: 8 }}
-                    ></Image>
-                  </TouchableOpacity>
-                  <View style={{width: Dimensions.get("screen").width * 0.9 - 120}}>
-                    <Text style={Global.clubTitle}>{item.title}</Text>
-                    <Text style={Global.clubAuthor}>By {item.author}</Text>
-                  </View>
-                </View>
-              </View>
-            )}
-            keyExtractor={item => item.bookID}
-          />
-        </View>
+        <ClubContainer clubsArray={this.state.clubs} userID={this.state.userID} navigation={this.props.navigation}/>
         <FlatList
           data={this.state.books}
           renderItem={({ item }) => (

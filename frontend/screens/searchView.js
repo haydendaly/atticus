@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity,
     TextInput, Button, ScrollView, FlatList, Image, Dimensions } from "react-native";
 import books from '../functions/books';
+import { Global } from "../styles/Global";
 
 export default function ClubView({ navigation }) {
 
@@ -30,9 +31,13 @@ export default function ClubView({ navigation }) {
   return (
     
 	<View style={styles.container}>
-      <Text style={styles.text}>Search</Text>
-      <Text>Enter a search term</Text>
-	  <TextInput placeholder='Title, Author, ISBN, etc...' textAlign={'center'} 
+
+      <Text style={[Global.header, {
+        marginTop: 50,
+        fontSize: 32,
+        fontWeight: "600"}]}> Browse for books </Text>
+
+	  <TextInput placeholder='Title, Author, ISBN, etc...' textAlign={'center'}
 	    autoFocus={true} style={styles.input} keyboardType={'default'} 
 		  onChangeText={text => onChangeText(text)} value={value}/>
 	  <FlatList

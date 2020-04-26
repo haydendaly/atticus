@@ -16,7 +16,7 @@ import { Global } from '../styles/Global';
 
 export default function PhoneInput({ navigation }) {
   const [number, setNumber] = React.useState("");
-  const [errorMsg, changeErrorMsg] = React.useState("#fff");
+  const [errorMsg, changeErrorMsg] = React.useState("#eee");
 
   const doneTapped = () => {
     let text = number;
@@ -32,7 +32,7 @@ export default function PhoneInput({ navigation }) {
           }
       });
     } else {
-      changeErrorMsg(text.length > 10 ? "#8b0000" : "#fff");
+      changeErrorMsg(text.length > 10 ? "#8b0000" : "#eee");
     }
   };
 
@@ -50,7 +50,7 @@ export default function PhoneInput({ navigation }) {
         autoFocus={true}
         autoCompleteType={"tel"}
         onChangeText={val => setNumber(val)}
-      />      
+      />
       <TouchableOpacity
         style={Global.doneButton}
         activeOpacity={0.75}
