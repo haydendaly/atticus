@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "BookClub",
+    "name": "Atticus",
     "slug": "bookclub",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -20,11 +20,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.atticus.hayden",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.atticus.hayden",
+      "googleServicesFile": "android.json"
     }
   }
 }
