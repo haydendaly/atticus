@@ -65,12 +65,14 @@ module.exports = async function (search, callback) {
     var resArray = [];
     for (item in books.search[0].results[0].work) {
       tempBook = books.search[0].results[0].work[item].best_book[0];
+      var image = tempBook.image_url[0].split('._SY160_').join('');
+      var imageClean = image.split('._SX98_').join('');
       if (tempBook['$'].type == 'Book') {
         resArray.push({
           'bookID' : tempBook.id[0]._,
           'title' : tempBook.title[0],
           'author' : tempBook.author[0].name[0],
-          'imgURL' : tempBook.image_url[0]
+          'imgURL' : imageClean
         });
       };
     };
