@@ -66,7 +66,10 @@ const screens = {
         title: 'Name Input',
         headerStyle: Global.headerStyle,
         headerTitleStyle: Global.headerTitleStyle,
-        gestureEnabled: false
+        gestureEnabled: false,
+        headerLeft: () => (
+          null
+        )
       }
     }
   }

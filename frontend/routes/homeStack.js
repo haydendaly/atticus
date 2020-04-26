@@ -76,7 +76,7 @@ const screens = {
                 headerTitleStyle: Global.headerTitleStyle,
                 headerLeft: () => (
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("HomeScreen")}
+                        onPress={() => navigation.goBack(null)}
                         style={{ paddingLeft: 8 }}
                     >
                         <Icon name="chevron-left" color="#FFF" size={32} />
@@ -95,7 +95,7 @@ const screens = {
                 headerTitleStyle: Global.headerTitleStyle,
                 headerLeft: () => (
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("HomeScreen")}
+                        onPress={() => navigation.goBack(null)}
                         style={{ paddingLeft: 8 }}
                     >
                         <Icon name="chevron-left" color="#FFF" size={32} />

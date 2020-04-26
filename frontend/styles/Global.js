@@ -4,7 +4,7 @@ export const Global = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: '#fff'
+        backgroundColor: '#eee'
     },
     text: {
         marginTop: 50,
@@ -65,15 +65,15 @@ export const Global = StyleSheet.create({
         borderRadius: 8,
         fontSize: 24
     },
-    headerStyle: { 
+    headerStyle: {
         backgroundColor: '#235a82',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 1,
     },
-    headerTitleStyle: { 
-        color: '#FFF', 
-        fontSize: 24, 
+    headerTitleStyle: {
+        color: '#FFF',
+        fontSize: 24,
         fontWeight: '500'
     },
     clubText: {
@@ -81,14 +81,14 @@ export const Global = StyleSheet.create({
         fontSize: 24,
         paddingLeft: "4%",
         color: "#143e60",
-        fontWeight: "500",
+        fontWeight: "700",
         marginBottom: "1%"
     },
     bookText: {
         fontSize: 24,
         paddingLeft: "4%",
         color: "#143e60",
-        fontWeight: "500",
+        fontWeight: "700",
         marginTop: "4%",
         marginBottom: "1%"
     },
@@ -97,7 +97,10 @@ export const Global = StyleSheet.create({
         backgroundColor: "#155149",
         borderRadius: 8,
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 1,
     },
     clubImage: {
         width: 113.33,
@@ -130,5 +133,5 @@ export const Global = StyleSheet.create({
         height: 100,
         alignItems: 'center',
         backgroundColor:'rgba(180, 180, 180, 0.8)'
-    }
+    },
 });

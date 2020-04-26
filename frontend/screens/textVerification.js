@@ -20,7 +20,7 @@ export default function PhoneInput({ navigation }) {
   const code = navigation.getParam('code');
 
   const [value, changeText] = React.useState('');
-  const [errorMsg, changeErrorMsg] = React.useState('#fff')
+  const [errorMsg, changeErrorMsg] = React.useState('#eee')
 
   function onChangeText(text) {
     changeText(text);
@@ -47,7 +47,7 @@ export default function PhoneInput({ navigation }) {
         }
       })
     } else {
-      changeErrorMsg(text.length > 5 ? '#8b0000' : '#fff')
+      changeErrorMsg(text.length > 5 ? '#8b0000' : '#eee')
     }
   }
 

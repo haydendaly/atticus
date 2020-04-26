@@ -16,7 +16,8 @@ const BookSchema = new mongoose.Schema({
 	'pages' : { type: Number, default: 0 },
 	'imgURL' : { type: String, default: '' },
 	'rate' : { type: Number, default: 0 },
-	'numberOfRatings' : { type: Number, default: 0}
+	'numberOfRatings' : { type: Number, default: 0},
+	'purchaseURL' : { type: String, default: ''}
 });
 
 module.exports = BookSchema;
