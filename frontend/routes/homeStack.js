@@ -123,26 +123,27 @@ const screens = {
             }
         },
     },
-    ClubInfoView: {
-        screen: ClubInfoView,
-        navigationOptions: ({ navigation }) => {
-            return {
-                headerShown: true,
-                title: "Club Info",
-                headerStyle: Global.headerStyle,
-                headerTitleStyle: Global.headerTitleStyle,
-                headerLeft: () => (
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("HomeScreen")}
-                        style={{ paddingLeft: 8 }}
-                    >
-                        <Icon name="chevron-left" color="#FFF" size={32} />
-                    </TouchableOpacity>
-                ),
-            }
-        },
-    },
-}
+ClubInfoView: {
+    screen: ClubInfoView,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerShown: true,
+        title: 'Club Info',
+        headerStyle: Global.headerStyle,
+        headerTitleStyle: Global.headerTitleStyle,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+            <Icon
+              name='chevron-left'
+              color='#FFF'
+              size={32}
+            />
+          </TouchableOpacity>
+          ),
+      }
+    }
+  },
+};
 
 const HomeStack = createStackNavigator(screens)
 export default HomeStack
