@@ -22,7 +22,7 @@ export default function ClubView({ navigation }) {
         {position:'absolute', 
         top: 90, 
         fontSize: 22, 
-        fontWeight: "400",
+        fontWeight: "500",
         textAlign: "center",
         color: '#3d3d3d'}]}>Get invite codes from your friends who have created a club for you to join.</Text>
 
@@ -63,7 +63,7 @@ export default function ClubView({ navigation }) {
         {position:'absolute', 
         bottom: 180, 
         fontSize: 22, 
-        fontWeight: "400",
+        fontWeight: "500",
         color: '#3d3d3d'}]}>Start a club by searching and selecting a book for your club.</Text>
 
 

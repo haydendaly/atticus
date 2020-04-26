@@ -75,7 +75,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerShown: true,
-        title: 'Book View',
+        title: 'Book Info',
         headerStyle: Global.headerStyle,
         headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
@@ -95,7 +95,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerShown: true,
-        title: 'Search View',
+        title: 'Search',
         headerStyle: Global.headerStyle,
         headerTitleStyle: Global.headerTitleStyle,
         headerLeft: () => (
