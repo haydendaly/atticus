@@ -16,7 +16,6 @@ export default function ClubView({ navigation }) {
   function onChangeText(text) {
   let result = changeText(text);
     text = text.split(' ').join('+')
-    console.log(text)
     books.search(text, (books) => {
 	  if (books[0] == null) {
 		updateResults([]);
