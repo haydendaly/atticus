@@ -1,0 +1,31 @@
+Hayden:
+* Make book on Club View Screen Touchable Opacity leading to BookView
+* Sketch out Club View Screen Mockup
+* Push to TestFlight / Google Play
+
+Bruno:
+* Work on Club View Screen
+  * Progress endpoint works, have bar responsive in realtime (can use componentsDidMount if you use a class over functional component)
+
+Scott:
+* Implement Club Info Screen
+  * Add share button for invite code that'll open messages with link to app download (not that intimidating-- https://github.com/react-native-community/react-native-share)
+  * Leave Club Button
+
+Miriam:
+* Overall Styling of App
+  * Consistency Throughout Views
+* Change positioning in create view from absolute to using flex
+  * Might look a bit better if the create club portion is a bit higher up on the Screen
+    * You can wrap both the sections in views and set the flex in the styling of them to something (like) .4 and .5 and then have a marginTop of like 10 on the lower Container
+
+Madeleine:
+* Book View
+  * Remove space between Description and the container on the top
+  * Color Buttons (maybe add Amazon Logo on Amazon Button)
+    * Can create view inside touchable opacity and set FlexDirection to row and then use text and icon
+  * Make Vertical Margins on book slightly larger
+
+All:
+* Put together presentation based on rubric
+* Suggest more UI changes!
