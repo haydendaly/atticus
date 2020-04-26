@@ -23,11 +23,6 @@ export default class GetStarted extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.props.navigation.state.params
-    // users.getClubs('temp', true, clubs => {
-    //   this.setState({
-    //     clubs: clubs
-    //   })
-    // })
   }
 
   componentDidMount() {

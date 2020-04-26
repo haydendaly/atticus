@@ -71,7 +71,7 @@ const screens = {
         navigationOptions: ({ navigation }) => {
             return {
                 headerShown: true,
-                title: "Book View",
+                title: navigation.state.params.title,
                 headerStyle: Global.headerStyle,
                 headerTitleStyle: Global.headerTitleStyle,
                 headerLeft: () => (

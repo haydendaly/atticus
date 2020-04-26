@@ -3,8 +3,11 @@ For: SSW 322
 By: Bruno, Hayden, Madeline, Miriam, and Scott
 #################################################*/
 
+import { AsyncStorage } from 'react-native';
+
 module.exports = {
     create: function (bookID, userID, callback) {
+      AsyncStorage.getItem('name').then((value) => {
         fetch("https://bookclub-hd.herokuapp.com/clubs/create", {
             method: "POST",
             headers: {
@@ -14,16 +17,18 @@ module.exports = {
             body: JSON.stringify({
                 bookID: bookID,
                 userID: userID,
+                name: value
             }),
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                callback(responseJson)
-            })
-            .catch((error) => {
-                console.log(JSON.stringify(error))
-                callback(null)
-            })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            callback(responseJson)
+        })
+        .catch((error) => {
+            console.log(JSON.stringify(error))
+            callback(null)
+        })
+      })
     },
     get: function (clubID, callback) {
         fetch("https://bookclub-hd.herokuapp.com/clubs/get/" + clubID, {
@@ -31,7 +36,7 @@ module.exports = {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.warn("response JSON:", responseJson)
+                console.log("response JSON:", responseJson)
                 callback(responseJson)
             })
             .catch((error) => {
@@ -52,24 +57,24 @@ module.exports = {
                 callback([])
             })
     },
-    update: function (clubID, body, callback) {
-        fetch("https://bookclub-hd.herokuapp.com/clubs/update/" + clubID, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: body,
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                callback(responseJson)
-            })
-            .catch((error) => {
-                console.log(JSON.stringify(error))
-                callback(null)
-            })
-    },
+    // update: function (clubID, body, callback) {
+    //     fetch("https://bookclub-hd.herokuapp.com/clubs/update/" + clubID, {
+    //         method: "POST",
+    //         headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: body,
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             callback(responseJson)
+    //         })
+    //         .catch((error) => {
+    //             console.log(JSON.stringify(error))
+    //             callback(null)
+    //         })
+    // },
     join: function (clubID, userID, callback) {
         fetch(
             "https://bookclub-hd.herokuapp.com/clubs/join/" +

@@ -11,6 +11,7 @@ import users from "../functions/users";
 
 export default class LoadingScreen extends Component {
   componentDidMount() {
+    console.disableYellowBox = true;
     this.checkIfLoggedIn();
   }
 

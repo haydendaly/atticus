@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity,
     TextInput, Button, AsyncStorage } from "react-native";
 import clubs from '../functions/clubs';
+import books from '../functions/books';
 import { Global } from '../styles/Global';
 
 
@@ -15,13 +16,13 @@ export default function ClubView({ navigation }) {
 
   return (
     <View style={styles.container}>
-     
+
         <Text style={[Global.header, {position:'absolute', top: 70, fontSize: 30, fontWeight: "700"}]}> Enter an invite code</Text>
-      
-        <Text style={[Global.subHeader, 
-        {position:'absolute', 
-        top: 90, 
-        fontSize: 22, 
+
+        <Text style={[Global.subHeader,
+        {position:'absolute',
+        top: 90,
+        fontSize: 22,
         fontWeight: "500",
         textAlign: "center",
         color: '#3d3d3d'}]}>Get invite codes from your friends who have created a club for you to join.</Text>
@@ -31,14 +32,14 @@ export default function ClubView({ navigation }) {
         style={styles.inviteCodeButton}
         activeOpacity={0.75}
       >
-      <TextInput placeholder='Enter code here' 
+      <TextInput placeholder='Enter code here'
       placeholderTextColor={'#959595'}
-       textAlign={'center'} 
-       style={styles.input} 
+       textAlign={'center'}
+       style={styles.input}
        keyboardType={'default'} onChangeText={text => {changeText(text)}}/>
       </TouchableOpacity>
 
-    
+
       <TouchableOpacity
         style={styles.joinClubButton}
         activeOpacity={0.75}
@@ -47,7 +48,20 @@ export default function ClubView({ navigation }) {
           if (value.length > 4) {
             AsyncStorage.getItem('userID').then(userID => {
               clubs.join(value, userID, data => {
-                navigation.navigate('HomeScreen');
+                clubs.get(value, (club) => {
+                  books.get(club.bookID, (book) => {
+                    var friends = [];
+                    var currentProgress = 0;
+                    for (var i = 0; i < club.users.length; i++) {
+                      if (club.users[i].userID != userID) {
+                        friends.push(club.users[i])
+                      } else {
+                        currentProgress = club.users[i].progress
+                      }
+                    }
+                    navigation.navigate("ClubView", [club, book, friends, userID, currentProgress])
+                  })
+                })
               })
             })
           }
@@ -56,13 +70,13 @@ export default function ClubView({ navigation }) {
         <Text style={{color: 'white', textAlign: 'center', fontSize: 26}}>Join</Text>
       </TouchableOpacity>
 
-      
+
       <Text style={[Global.header, {position:'absolute', bottom: 250, fontSize: 30, fontWeight: "700"}]}> Create a club</Text>
-      
-        <Text style={[Global.subHeader, 
-        {position:'absolute', 
-        bottom: 180, 
-        fontSize: 22, 
+
+        <Text style={[Global.subHeader,
+        {position:'absolute',
+        bottom: 180,
+        fontSize: 22,
         fontWeight: "500",
         color: '#3d3d3d'}]}>Start a club by searching and selecting a book for your club.</Text>
 

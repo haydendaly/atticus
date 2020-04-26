@@ -14,7 +14,7 @@ import {
     Image,
     FlatList,
 } from "react-native"
-import { update, get, updateProgress } from "../functions/clubs"
+import { get, updateProgress } from "../functions/clubs"
 
 function ClubView(props) {
     const club = props.navigation.state.params[0]
@@ -32,7 +32,7 @@ function ClubView(props) {
     //     },
     // })
     function updateProgressCallback(e) {
-        update(club.clubID, {}, (cb) => console.warn("normal update cb", cb))
+        // update(club.clubID, {}, (cb) => console.log("normal update cb", cb))
     }
     useEffect(() => {
         updateProgress(
@@ -89,7 +89,7 @@ function ClubView(props) {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{
-                        flex: 1 / friends.length,
+                        flex: friends.length > 1 ? 1 / friends.length : 1,
                     }}
                     data={friends}
                     renderItem={({ item }) => (
