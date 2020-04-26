@@ -19,7 +19,7 @@ export default function GetStarted({ navigation }) {
     navigation.push("PhoneInput");
   };
 
-  const imageHolder = [require('../assets/GetStarted/1.jpg'), require('../assets/GetStarted/2.jpg'), require('../assets/GetStarted/3.jpg')]
+  const imageHolder = [require('../assets/GetStarted/1.2.jpeg'), require('../assets/GetStarted/2.2.jpg'), require('../assets/GetStarted/3.3.jpg')]
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   setTimeout(() => {
     setCurrentImageIndex(currentImageIndex == imageHolder.length - 1 ?
