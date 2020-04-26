@@ -26,9 +26,5 @@
       "bundleIdentifier": "com.atticus.hayden",
       "buildNumber": "1"
     },
-    "android": {
-      "package": "com.atticus.hayden",
-      "googleServicesFile": "android.json"
-    }
   }
 }
