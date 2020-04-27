@@ -37,7 +37,7 @@ export default class BookView extends React.Component {
 
           <View style={{flex: 1, height: "50%", flexDirection: "column"}}>
             <Text adjustsFontSizeToFit
-              numberOfLines={3} style={styles.bookTitle}>{this.state.title}</Text>
+              numberOfLines={2} style={styles.bookTitle}>{this.state.title}</Text>
             <Text style={styles.subHeader}>{this.state.author}</Text>
 
            <TouchableOpacity
