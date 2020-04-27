@@ -60,7 +60,7 @@ function ClubView(props) {
                 <View
                     style={{
                         ...styles.progressBarProgress,
-                        width: `${(currentUserProgress / pageTotal) * 100}%`,
+                        width: `${(pageProgress / pageTotal) * 100}%`,
                         height: 30,
                     }}
                 ></View>
