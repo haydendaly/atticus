@@ -15,9 +15,6 @@ Scott:
 Miriam:
 * Overall Styling of App
   * Consistency Throughout Views
-* Change positioning in create view from absolute to using flex
-  * Might look a bit better if the create club portion is a bit higher up on the Screen
-    * You can wrap both the sections in views and set the flex in the styling of them to something (like) .4 and .5 and then have a marginTop of like 10 on the lower Container
 
 Madeleine:
 * Book View

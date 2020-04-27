@@ -67,27 +67,30 @@ export const Global = StyleSheet.create({
     },
     headerStyle: {
         backgroundColor: '#235a82',
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width:0, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 1,
     },
     headerTitleStyle: {
         color: '#FFF',
         fontSize: 24,
-        fontWeight: '500'
+        fontWeight: '500',
+        borderLeftWidth: 25,
+        borderRightWidth: 25,
+        alignSelf: 'center'
     },
     clubText: {
         marginTop: "4%",
         fontSize: 24,
         paddingLeft: "4%",
-        color: "#143e60",
+        color: 'black',
         fontWeight: "700",
         marginBottom: "1%"
     },
     bookText: {
         fontSize: 24,
         paddingLeft: "4%",
-        color: "#143e60",
+        color: "black",
         fontWeight: "700",
         marginTop: "4%",
         marginBottom: "1%"
@@ -119,13 +122,16 @@ export const Global = StyleSheet.create({
     },
     clubTitle: {
         fontSize: 24,
+        fontWeight: "600",
         color: "#fff",
         marginTop: 10
     },
     clubAuthor: {
         justifyContent: "space-between",
         marginTop: 5,
-        color: "#bbb"
+        color: '#e0ffff',
+        fontSize: 18,
+        fontWeight: "400"
     },
     rectangle:{
         marginTop: 50,
