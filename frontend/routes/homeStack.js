@@ -57,7 +57,7 @@ const screens = {
                 ),
                 headerRight: () => (
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("ClubInfoView")}
+                        onPress={() => navigation.navigate("ClubInfoView", navigation.state)}
                         style={{ paddingRight: 8 }}
                     >
                         <Icon name="info-circle" color="#FFF" size={32} />
@@ -123,26 +123,26 @@ const screens = {
             }
         },
     },
-ClubInfoView: {
-    screen: ClubInfoView,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerShown: true,
-        title: 'Club Info',
-        headerStyle: Global.headerStyle,
-        headerTitleStyle: Global.headerTitleStyle,
-        headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
-            <Icon
-              name='chevron-left'
-              color='#FFF'
-              size={32}
-            />
-          </TouchableOpacity>
-          ),
-      }
-    }
-  },
+	ClubInfoView: {
+		screen: ClubInfoView,
+		navigationOptions: ({ navigation }) => {
+			return {
+				headerShown: true,
+				title: 'Club Info',
+				headerStyle: Global.headerStyle,
+				headerTitleStyle: Global.headerTitleStyle,
+				headerLeft: () => (
+				  <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={{paddingLeft: 8}}>
+					<Icon
+						name='chevron-left'
+						color='#FFF'
+						size={32}
+					/>
+					</TouchableOpacity>
+				),
+			}
+		}
+	},
 };
 
 const HomeStack = createStackNavigator(screens)

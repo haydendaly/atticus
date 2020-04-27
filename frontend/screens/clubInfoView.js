@@ -31,10 +31,10 @@ export default class ClubInfoView extends React.Component {
   constructor(props) {
     super(props)
 	this.state = {
-		club: this.props.navigation.state.params[0],
-		book: this.props.navigation.state.params[1],
-		progress: this.props.navigation.state.params[4],
-		end: new Date(this.props.navigation.state.params[0].end*1000)
+		club: this.props.navigation.state.params.params[0],
+		book: this.props.navigation.state.params.params[1],
+		progress: this.props.navigation.state.params.params[4],
+		end: new Date(this.props.navigation.state.params.params[0].end*1000)
 	}
   }
   
