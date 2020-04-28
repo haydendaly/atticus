@@ -34,7 +34,7 @@ export default function ClubView({ navigation }) {
         })
         return result
     }
-
+  
     return (
         <View style={styles.container}>
             <Text

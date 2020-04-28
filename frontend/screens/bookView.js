@@ -28,16 +28,16 @@ export default class BookView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{backgroundColor: '#155149', flex: .33, width: '100%', flexDirection: 'row'}}>
-          <View style={{flex: .6, marginTop: '1.75%', height: '93%', paddingLeft: '2%'}}>
+        <View style={{backgroundColor: '#dac8e8', flex: .33, width: '100%', flexDirection: 'row'}}>
+          <View style={{flex: .6, marginTop: '1.75%', height: '93%', paddingLeft: '3%'}}>
             <Image source={{uri: this.state.imgURL}} style={{borderRadius: 8, height: '100%', width: '100%'}}>
             </Image>
 
             </View>
 
-          <View style={{flex: 1, height: "50%", flexDirection: "column", alignContent: ""}}>
+          <View style={{flex: 1, height: "50%", flexDirection: "column"}}>
             <Text adjustsFontSizeToFit
-              numberOfLines={3} style={styles.bookTitle}>{this.state.title}</Text>
+              numberOfLines={2} style={styles.bookTitle}>{this.state.title}</Text>
             <Text style={styles.subHeader}>{this.state.author}</Text>
 
            <TouchableOpacity
@@ -84,7 +84,7 @@ export default class BookView extends React.Component {
           </View>
        </View>
 
-      <View style={{flex: .65, height: 180, paddingTop: 35}} >
+      <View style={{flex: .65, height: 180}} >
       <ScrollView>
         <View style={styles.textContainer}>
           <Text style = {[styles.text, {fontWeight: "800"}]}>Description</Text>
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   button: {
-    backgroundColor: "#5d8e98",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    backgroundColor: "indigo",
+    paddingHorizontal: 7,
+    paddingVertical: 7,
     borderWidth: 2,
-    borderColor: '#5d8e98',
+    borderColor: 'indigo',
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
@@ -117,15 +117,15 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   bookTitle: {
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: "800",
-    color: '#fff',
+    color: 'black',
     paddingTop:10,
     paddingLeft:12,
   },
   subHeader: {
-    fontSize: 21,
-    color: '#e0ffff',
+    fontSize: 18,
+    color: 'indigo',
     paddingTop: '2%',
     fontWeight: '400',
     paddingLeft:12
