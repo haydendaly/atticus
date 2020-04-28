@@ -13,8 +13,10 @@ import {
     Button,
     Image,
     FlatList,
+    KeyboardAvoidingView
 } from "react-native"
 import { get, updateProgress } from "../functions/clubs"
+import { Global } from "../styles/Global"
 
 function ClubView(props) {
     const club = props.navigation.state.params[0]
@@ -44,46 +46,75 @@ function ClubView(props) {
     }, [pageProgress])
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+
+
+            <Text style={[Global.header,{fontSize: 30, marginTop: 20, fontWeight: "600"}]}>Club Status</Text>
+
             <Image
                 source={{
                     uri: book.imgURL,
                 }}
                 style={styles.bookCover}
             ></Image>
-            <Text style={styles.bookTitle}>{book.title}</Text>
-            <Text style={styles.bookAuthor}>{book.author}</Text>
+
+
+        <View style={styles.box}>
+         <Text style={styles.bookTitle}>Your progress</Text>
+
+
+            <View style={styles.pageCountContainer}>
+                <Text style={[styles.pageCountTotal, {left: -78}]}>0 pages</Text>
+                <Text style={styles.pageCountTotal}>  {pageTotal}</Text>
+                <Text style = {[styles.pageCountTotal,{fontSize: 20}]}> pages</Text>
+            </View>
+        
+
             <View style={styles.progressBarContainer}>
                 <View
-                    style={{ ...styles.progressBarOutline, height: 30 }}
+                    style={{ ...styles.progressBarOutline, height: 30, borderColor: 'indigo' }}
                 ></View>
                 <View
                     style={{
                         ...styles.progressBarProgress,
                         width: `${(currentUserProgress / pageTotal) * 100}%`,
                         height: 30,
+                        backgroundColor: 'indigo'
                     }}
                 ></View>
             </View>
-            <View style={styles.pageCountContainer}>
+
+        <View style = {{flexDirection: "row", alignItems: "center"}}>
+            <Text style={styles.text}>You have read</Text>
+
+                
                 <TextInput
+                   // keyboardType={"phone-pad"}
+                    placeholder="0"
+                    placeholderTextColor= "grey"
                     style={styles.pageCountInput}
                     value={"" + pageProgress}
                     onChangeText={(progress) => setPageProgress(progress)}
                 ></TextInput>
-                <Text style={styles.pageCountTotal}> / {pageTotal}</Text>
-            </View>
-            <Text style={styles.text}>
+                
+
+                <Text style={[styles.text,{marginRight: 10}]}>pages.</Text>
+                
+                <Text style={styles.text}>
                 {
                     encouragements[
                         Math.floor(Math.random() * encouragements.length)
                     ]
                 }
             </Text>
-            <View style={styles.connectorBall}></View>
-            <View style={styles.connectorBar}></View>
-            <View style={styles.connectorBall}></View>
-            <Text style={styles.text}>Here's how your friends are doing!</Text>
+            </View>
+            </View>
+
+
+        <View style = {styles.box}>
+            <Text style={[styles.bookTitle, {color:"#23827b"}]}>Your friends</Text>
+
+
             <View style={styles.friendContainer}>
                 <FlatList
                     horizontal={true}
@@ -94,7 +125,8 @@ function ClubView(props) {
                     data={friends}
                     renderItem={({ item }) => (
                         <View style={styles.friend}>
-                            <Text style={styles.friendName}>{item.userID}</Text>
+                            <Text style={styles.friendName}>{item.name}</Text>
+
                             <View style={styles.progressBarContainer}>
                                 <View
                                     style={{
@@ -119,7 +151,8 @@ function ClubView(props) {
                     keyExtractor={(item, index) => "key" + index}
                 />
             </View>
-        </View>
+            </View>
+    </KeyboardAvoidingView>
     )
 }
 
@@ -132,58 +165,68 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     bookTitle: {
-        marginTop: 10,
         fontSize: 24,
-        fontWeight: "bold",
+       fontWeight: "bold",
+        color: 'indigo',
+        right: 99,
+        marginTop: 8
     },
     bookAuthor: {
         fontSize: 16,
     },
     text: {
-        fontSize: 14,
-        margin: 10,
+        fontSize: 20,
+      //  marginBottom: 20,
         color: themeColor,
+        textAlign: "center"
     },
     bookCover: {
         width: "40%",
         height: "30%",
         borderRadius: 8,
-        marginTop: 20,
+        marginTop: 15,
+        marginBottom: 10
     },
     progressBarContainer: {
         width: "80%",
-        marginTop: 10,
+        marginTop: 3,
         marginBottom: 10,
+       // margin: 10
     },
     progressBarOutline: {
         borderStyle: "solid",
         borderWidth: 2,
-        borderColor: themeColor,
+        borderColor: "#23827b",
         borderRadius: 50,
         width: "100%",
     },
     progressBarProgress: {
-        backgroundColor: themeColor,
+        backgroundColor: "#23827b",
         borderRadius: 50,
         position: "absolute",
     },
     pageCountContainer: {
         flexDirection: "row",
+        alignItems: "center", 
+        marginTop: 17
     },
     pageCountInput: {
-        backgroundColor: "white",
-        fontSize: 32,
+       // backgroundColor: "white",
+        fontSize: 25,
         textDecorationLine: "underline",
-        borderColor: themeColor,
-        borderWidth: 2,
-        borderRadius: 8,
-        padding: 5,
+      //  borderColor: themeColor,
+     //   borderWidth: 2,
+       // borderRadius: 8,
+      //  padding: 5,
         color: themeColor,
+        marginLeft: 10,
+        marginRight: 10
     },
     pageCountTotal: {
-        fontSize: 32,
-        margin: 5,
+        fontSize: 20,
+       // margin: 5,
         color: themeColor,
+        left: 77
     },
     connectorBall: {
         width: 10,
@@ -205,9 +248,25 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     friendName: {
-        color: themeColor,
+        color: '#23827b',
         fontWeight: "bold",
+        fontSize: 22
     },
+    box: {
+        alignItems: "center",
+        width: "80%",
+        width: 350,
+        marginTop: 10,
+        marginBottom: 10,
+       // borderWidth: 1,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: .3,
+        shadowRadius: 1,  
+        backgroundColor: 'white',
+    }
+   
 })
 
 const encouragements = [
@@ -215,6 +274,6 @@ const encouragements = [
     "Keep going!",
     "Nice work!",
     "Nice job!",
-    "Hang in there buddy its almost over I promise",
+    "Hang in there!",
 ]
 export default ClubView

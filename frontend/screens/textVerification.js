@@ -54,8 +54,8 @@ export default function PhoneInput({ navigation }) {
   return (
     <View style={Global.container}>
       <View style={Global.textContainer}>
-        <Text style={Global.header}>What's your code?</Text>
-        <Text style={Global.subHeader}>You should shortly receive an SMS verification code.</Text>
+        <Text style={[Global.header, {fontWeight: '700'}]}>What's your code?</Text>
+        <Text style={[Global.subHeader,{fontWeight: '500'}]}>You should shortly receive an SMS verification code.</Text>
       </View>
       <TextInput style={Global.input}
         keyboardType={'phone-pad'}

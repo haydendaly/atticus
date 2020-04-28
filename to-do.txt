@@ -10,7 +10,6 @@ Bruno:
 Scott:
 * Implement Club Info Screen
   * Add share button for invite code that'll open messages with link to app download (not that intimidating-- https://github.com/react-native-community/react-native-share)
-  * Leave Club Button
 
 Miriam:
 * Overall Styling of App

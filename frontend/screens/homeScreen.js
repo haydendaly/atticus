@@ -34,7 +34,7 @@ function ClubContainer({ clubsArray, userID, navigation }) {
                  navigation.navigate('CreateView');
                }}
                 >
-               <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>Join / Create A Club</Text>
+               <Text style={{color: 'white', textAlign: 'center', fontSize: 20, fontWeight: '600'}}>Join / Create A Club</Text>
              </TouchableOpacity>
              </View>
           </View>

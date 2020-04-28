@@ -34,7 +34,7 @@ export const Global = StyleSheet.create({
         fontWeight: '600'
     },
     subHeader: {
-        fontSize: 20,
+        fontSize: 22,
         color: '#141414',
         padding: '5%',
         fontWeight: '400',
@@ -59,7 +59,7 @@ export const Global = StyleSheet.create({
     input: {
         width: '60%',
         borderWidth: 2,
-        borderColor: '#235A82',
+        borderColor: 'black',
         margin: 8,
         padding: 18,
         borderRadius: 8,
